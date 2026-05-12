@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Award, TrendingUp } from "lucide-react";
+import { ArrowRight, Shield, Award, TrendingUp, Phone } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -33,18 +33,38 @@ export default function HeroSection() {
               Alles rund um die betriebliche Altersversorgung – kompetent, zuverlässig und maßgeschneidert für Ihr Unternehmen.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <a href="#kontakt">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2 text-base px-8">
                   Angebotsanfrage
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </a>
-              <a href="#dienstleistungen">
+              <a href="#kontakt">
                 <Button size="lg" variant="outline" className="gap-2 text-base border-primary/20 hover:bg-primary/5">
-                  Unsere Leistungen
+                  <Phone className="w-4 h-4" />
+                  Kostenlose Erstberatung
                 </Button>
               </a>
+            </div>
+
+            {/* Zertifizierungs-Logos */}
+            <div className="flex items-center gap-6 pt-6 border-t border-border/50">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider shrink-0">Mitglied in:</span>
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-card border border-border/50">
+                  <Shield className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold text-foreground">DAV</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-card border border-border/50">
+                  <Award className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold text-foreground">IVS</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-card border border-border/50">
+                  <Shield className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-semibold text-foreground">aba</span>
+                </div>
+              </div>
             </div>
           </div>
 

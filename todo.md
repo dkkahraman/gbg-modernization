@@ -18,3 +18,11 @@
 - [x] Tests: Vitest-Tests für Backend-Logik (Kontaktformular, Benachrichtigungen)
 - [x] Vitest-Tests ergänzen: notifyOwner-Aufruf verifizieren bei Inquiry-Submit
 - [x] Impressum-Hinweis: Platzhalter-Daten sind bewusst gesetzt, Kunde muss echte Daten einpflegen
+
+## Wettbewerbsanalyse-Optimierungen
+
+- [x] Testimonials-Sektion: 2-3 Kundenstimmen (anonymisiert) als eigene Sektion (Platzhalter-Texte, müssen durch echte Referenzen ersetzt werden)
+- [x] Team-Sektion: Persönliche Ansprechpartner mit Foto-Platzhalter, Name und Titel (Platzhalter-Daten, müssen durch echte Teammitglieder ersetzt werden)
+- [x] Zertifizierungs-/Mitgliedschafts-Logos: DAV, IVS, aba als Badge-Leiste im Hero-Bereich (Icon+Text-Badges; echte Logos können später ergänzt werden)
+- [x] FAQ-Sektion: 7 häufig gestellte Fragen zu Pensionsgutachten, BilMoG, Ablauf
+- [x] Sekundärer CTA: "Kostenlose Erstberatung" als alternative niedrigschwellige Kontaktoption
