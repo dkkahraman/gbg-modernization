@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -10,6 +11,7 @@ import Impressum from "./pages/Impressum";
 import AGB from "./pages/AGB";
 import Stellenangebote from "./pages/Stellenangebote";
 import Rechengroessen from "./pages/Rechengroessen";
+import SplashScreen from "./components/SplashScreen";
 
 function Router() {
   return (
@@ -27,12 +29,40 @@ function Router() {
 }
 
 function App() {
+  // Show splash only once per session
+  const [showSplash, setShowSplash] = useState(() => {
+    try {
+      const hasSeenSplash = sessionStorage.getItem("gbg-splash-seen");
+      return !hasSeenSplash;
+    } catch {
+      // Storage unavailable (e.g. private browsing) – show splash anyway
+      return true;
+    }
+  });
+
+  const handleSplashComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem("gbg-splash-seen", "true");
+    } catch {
+      // Storage unavailable – splash will show again on reload, acceptable fallback
+    }
+    setShowSplash(false);
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+          <div
+            style={{
+              opacity: showSplash ? 0 : 1,
+              transition: "opacity 0.4s ease",
+            }}
+          >
+            <Router />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

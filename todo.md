@@ -33,3 +33,9 @@
 - [x] Hover-Effekte: Verbesserte Karten-Hover mit Scale, Shadow und Border-Transitions
 - [x] Scroll-Animationen: Staggered Fade-in für Testimonials, Team, Services, FAQ
 - [x] Smooth Transitions: Weiche Übergänge für Karten, Buttons, Formularfelder und Kontakt-Icons in allen neuen Sektionen
+
+## Ladeanimation
+
+- [x] Splash-Screen-Komponente: Elegantes GBG-Logo mit Fade-in Animation
+- [x] Übergangseffekt: Sanftes Ausblenden des Splash-Screens in die Hauptseite
+- [x] Session-basiert: Animation nur beim ersten Seitenaufruf pro Session anzeigen
