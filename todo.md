@@ -65,3 +65,7 @@
 - [x] BackToTop-Komponente: Dezenter Button am unteren rechten Rand mit Fade-in nach Scroll
 - [x] Smooth Scroll: Weiches Zurückscrollen nach oben bei Klick
 - [x] Integration in App.tsx
+
+## Sitemap
+
+- [x] sitemap.xml: Vollständige XML-Sitemap mit allen öffentlichen Seiten, Prioritäten und changefreq
