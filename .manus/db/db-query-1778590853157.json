@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `articles` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`title` varchar(300) NOT NULL,\n\t`slug` varchar(300) NOT NULL,\n\t`excerpt` text NOT NULL,\n\t`content` text NOT NULL,\n\t`category` enum('bilmog','pensionsgutachten','bav','recht','aktuelles') NOT NULL DEFAULT 'aktuelles',\n\t`author` varchar(200) NOT NULL,\n\t`isPublished` boolean NOT NULL DEFAULT false,\n\t`publishedAt` timestamp,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `articles_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `articles_slug_unique` UNIQUE(`slug`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway06.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 33oFpaEf1qoE8cP.root --database TbQmSEyQBouLLYcXDyFHmu --execute CREATE TABLE `articles` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`title` varchar(300) NOT NULL,\n\t`slug` varchar(300) NOT NULL,\n\t`excerpt` text NOT NULL,\n\t`content` text NOT NULL,\n\t`category` enum('bilmog','pensionsgutachten','bav','recht','aktuelles') NOT NULL DEFAULT 'aktuelles',\n\t`author` varchar(200) NOT NULL,\n\t`isPublished` boolean NOT NULL DEFAULT false,\n\t`publishedAt` timestamp,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `articles_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `articles_slug_unique` UNIQUE(`slug`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1288
+}

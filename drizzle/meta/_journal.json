@@ -15,6 +15,13 @@
       "when": 1778585828649,
       "tag": "0001_moaning_firelord",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1778590839314,
+      "tag": "0002_silent_wasp",
+      "breakpoints": true
     }
   ]
 }

@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
-import { createInquiry, getInquiries, getActiveJobPostings, getAllJobPostings, createJobPosting } from "./db";
+import { createInquiry, getInquiries, getActiveJobPostings, getAllJobPostings, createJobPosting, getPublishedArticles, getArticleBySlug, getAllArticles, createArticle, updateArticle, deleteArticle } from "./db";
 import { notifyOwner } from "./_core/notification";
 
 export const appRouter = router({
@@ -84,6 +84,68 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         const id = await createJobPosting(input);
         return { success: true, id };
+      }),
+  }),
+
+  articles: router({
+    listPublished: publicProcedure
+      .input(z.object({
+        category: z.string().optional(),
+        search: z.string().optional(),
+      }).optional())
+      .query(async ({ input }) => {
+        return getPublishedArticles(input?.category, input?.search);
+      }),
+
+    getBySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => {
+        return getArticleBySlug(input.slug);
+      }),
+
+    listAll: protectedProcedure.query(async () => {
+      return getAllArticles();
+    }),
+
+    create: protectedProcedure
+      .input(z.object({
+        title: z.string().min(1).max(300),
+        slug: z.string().min(1).max(300),
+        excerpt: z.string().min(1),
+        content: z.string().min(1),
+        category: z.enum(["bilmog", "pensionsgutachten", "bav", "recht", "aktuelles"]).default("aktuelles"),
+        author: z.string().min(1).max(200),
+        isPublished: z.boolean().default(false),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const id = await createArticle(input);
+        return { success: true, id };
+      }),
+
+    update: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().min(1).max(300).optional(),
+        slug: z.string().min(1).max(300).optional(),
+        excerpt: z.string().optional(),
+        content: z.string().optional(),
+        category: z.enum(["bilmog", "pensionsgutachten", "bav", "recht", "aktuelles"]).optional(),
+        author: z.string().max(200).optional(),
+        isPublished: z.boolean().optional(),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateArticle(id, data);
+        return { success: true };
+      }),
+
+    delete: protectedProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteArticle(input.id);
+        return { success: true };
       }),
   }),
 });

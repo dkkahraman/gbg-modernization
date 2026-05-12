@@ -1,6 +1,6 @@
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and, like, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, inquiries, InsertInquiry, jobPostings, InsertJobPosting } from "../drizzle/schema";
+import { InsertUser, users, inquiries, InsertInquiry, jobPostings, InsertJobPosting, articles, InsertArticle } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -138,4 +138,67 @@ export async function createJobPosting(posting: InsertJobPosting) {
   
   const result = await db.insert(jobPostings).values(posting);
   return result[0].insertId;
+}
+
+// ============ ARTICLE HELPERS ============
+
+export async function getPublishedArticles(category?: string, search?: string) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const conditions = [eq(articles.isPublished, true)];
+  if (category && category !== "alle") {
+    conditions.push(eq(articles.category, category as any));
+  }
+  if (search) {
+    conditions.push(
+      or(
+        like(articles.title, `%${search}%`),
+        like(articles.excerpt, `%${search}%`)
+      )!
+    );
+  }
+
+  return db.select().from(articles)
+    .where(and(...conditions))
+    .orderBy(desc(articles.publishedAt));
+}
+
+export async function getArticleBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+
+  const result = await db.select().from(articles)
+    .where(and(eq(articles.slug, slug), eq(articles.isPublished, true)))
+    .limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getAllArticles() {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select().from(articles).orderBy(desc(articles.createdAt));
+}
+
+export async function createArticle(article: InsertArticle) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const result = await db.insert(articles).values(article);
+  return result[0].insertId;
+}
+
+export async function updateArticle(id: number, data: Partial<InsertArticle>) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.update(articles).set(data).where(eq(articles.id, id));
+}
+
+export async function deleteArticle(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  await db.delete(articles).where(eq(articles.id, id));
 }

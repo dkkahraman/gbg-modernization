@@ -81,6 +81,11 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
+            <Link href="/blog">
+              <span className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                Fachartikel
+              </span>
+            </Link>
             <Link href="/stellenangebote">
               <span className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
                 Karriere
@@ -138,6 +143,11 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
+            <Link href="/blog" onClick={() => setIsMobileMenuOpen(false)}>
+              <span className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2 block">
+                Fachartikel
+              </span>
+            </Link>
             <Link href="/stellenangebote" onClick={() => setIsMobileMenuOpen(false)}>
               <span className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2 block">
                 Karriere

@@ -69,3 +69,18 @@
 ## Sitemap
 
 - [x] sitemap.xml: Vollständige XML-Sitemap mit allen öffentlichen Seiten, Prioritäten und changefreq
+
+## Blog/Fachartikel
+
+- [x] Datenbank-Schema: articles-Tabelle (title, slug, excerpt, content, category, publishedAt, author)
+- [x] Backend-Router: CRUD-Prozeduren für Artikel (list, getBySlug, create, update, delete)
+- [x] Blog-Übersichtsseite: Karten-Layout mit Kategorien-Filter und Suchfunktion
+- [x] Einzelartikel-Seite: Vollständige Darstellung mit Markdown-Rendering
+- [x] Navigation: Blog-Link in Hauptnavigation integrieren
+- [x] SEO: Dynamische Meta-Tags (useSEO) für Blog-Seiten
+- [x] Sitemap: Blog-Seite in sitemap.xml aufnehmen
+- [x] Beispiel-Artikel: 3 Fachartikel zu bAV-Themen als Seed-Daten
+- [x] Blog-Übersichtsseite: Error-State und Retry-UI für fehlgeschlagene Abfragen
+- [x] Einzelartikel-Seite: Separater Error-State für API-Fehler (nicht als 404 darstellen)
+- [x] Blog-SEO: JSON-LD Article-Schema pro Einzelartikel
+- [x] Vitest-Tests für Article-Router (listPublished/getBySlug/create/update/delete)

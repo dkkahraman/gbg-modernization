@@ -11,6 +11,8 @@ import Impressum from "./pages/Impressum";
 import AGB from "./pages/AGB";
 import Stellenangebote from "./pages/Stellenangebote";
 import Rechengroessen from "./pages/Rechengroessen";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
@@ -24,6 +26,8 @@ function Router() {
       <Route path={"/agb"} component={AGB} />
       <Route path={"/stellenangebote"} component={Stellenangebote} />
       <Route path={"/rechengroessen"} component={Rechengroessen} />
+      <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/:slug"} component={BlogArticle} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
