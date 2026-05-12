@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, inquiries, InsertInquiry, jobPostings, InsertJobPosting } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,53 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// ============ INQUIRY HELPERS ============
+
+export async function createInquiry(inquiry: InsertInquiry) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(inquiries).values(inquiry);
+  return result[0].insertId;
+}
+
+export async function getInquiries() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(inquiries).orderBy(desc(inquiries.createdAt));
+}
+
+export async function getInquiryById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(inquiries).where(eq(inquiries.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+// ============ JOB POSTING HELPERS ============
+
+export async function getActiveJobPostings() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(jobPostings)
+    .where(eq(jobPostings.isActive, true))
+    .orderBy(desc(jobPostings.createdAt));
+}
+
+export async function getAllJobPostings() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(jobPostings).orderBy(desc(jobPostings.createdAt));
+}
+
+export async function createJobPosting(posting: InsertJobPosting) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const result = await db.insert(jobPostings).values(posting);
+  return result[0].insertId;
+}
