@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
@@ -25,10 +26,21 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { containerRef, getItemStyle } = useStaggeredAnimation(testimonials.length);
+
   return (
     <section className="py-20 md:py-28 bg-secondary/50">
       <div className="container">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className="text-center mb-16"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease, transform 0.7s ease",
+          }}
+        >
           <span className="text-sm font-medium text-accent uppercase tracking-wider">
             Referenzen
           </span>
@@ -40,17 +52,20 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-8 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
+              style={getItemStyle(index)}
+              className="bg-card rounded-2xl p-8 border border-border/50 shadow-sm 
+                hover:shadow-lg hover:-translate-y-2 hover:border-accent/30
+                transition-all duration-500 ease-out flex flex-col group"
             >
-              <Quote className="w-8 h-8 text-accent/40 mb-4 shrink-0" />
+              <Quote className="w-8 h-8 text-accent/40 mb-4 shrink-0 group-hover:text-accent/70 transition-colors duration-300" />
               <blockquote className="text-foreground/80 leading-relaxed flex-1 mb-6 italic">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
-              <div className="border-t border-border/50 pt-4">
+              <div className="border-t border-border/50 pt-4 group-hover:border-accent/20 transition-colors duration-300">
                 <p className="font-semibold text-foreground text-sm">
                   {testimonial.author}
                 </p>

@@ -1,4 +1,5 @@
 import { TrendingUp, Info } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const bilmogData = [
   { monat: "Veröffentlicht 12.2025", siebenJaehrig: "2,22 %", zehnJaehrig: "2,06 %", isPrognose: false },
@@ -7,12 +8,23 @@ const bilmogData = [
 ];
 
 export default function BilMoGSection() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: tableRef, isVisible: tableVisible } = useScrollAnimation({ threshold: 0.2 });
+
   return (
     <section id="bilmog" className="py-20 md:py-28 bg-secondary/50">
       <div className="container">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div
+            ref={headerRef}
+            className="text-center mb-12"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease, transform 0.7s ease",
+            }}
+          >
             <span className="text-sm font-medium text-accent uppercase tracking-wider">
               Aktuelle Zinsentwicklung
             </span>
@@ -25,7 +37,16 @@ export default function BilMoGSection() {
           </div>
 
           {/* Table Card */}
-          <div className="bg-card rounded-2xl shadow-lg border border-border/50 overflow-hidden">
+          <div
+            ref={tableRef}
+            className="bg-card rounded-2xl shadow-lg border border-border/50 overflow-hidden
+              hover:shadow-xl transition-shadow duration-500"
+            style={{
+              opacity: tableVisible ? 1 : 0,
+              transform: tableVisible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.98)",
+              transition: "opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s",
+            }}
+          >
             <div className="p-6 md:p-8 border-b border-border/50 bg-primary/[0.02]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -58,9 +79,14 @@ export default function BilMoGSection() {
                   {bilmogData.map((row, index) => (
                     <tr
                       key={index}
-                      className={`border-b border-border/30 last:border-0 transition-colors hover:bg-secondary/50 ${
-                        row.isPrognose ? "bg-accent/5" : ""
-                      }`}
+                      className={`border-b border-border/30 last:border-0 
+                        hover:bg-primary/[0.03] transition-all duration-300
+                        ${row.isPrognose ? "bg-accent/5 hover:bg-accent/10" : ""}`}
+                      style={{
+                        opacity: tableVisible ? 1 : 0,
+                        transform: tableVisible ? "translateX(0)" : "translateX(-20px)",
+                        transition: `opacity 0.5s ease ${0.4 + index * 0.15}s, transform 0.5s ease ${0.4 + index * 0.15}s`,
+                      }}
                     >
                       <td className="px-6 md:px-8 py-4">
                         <div className="flex items-center gap-2">

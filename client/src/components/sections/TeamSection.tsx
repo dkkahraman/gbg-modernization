@@ -1,4 +1,5 @@
 import { Mail, Phone, Linkedin } from "lucide-react";
+import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
 const team = [
   {
@@ -28,10 +29,21 @@ const team = [
 ];
 
 export default function TeamSection() {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { containerRef, getItemStyle } = useStaggeredAnimation(team.length);
+
   return (
     <section id="team" className="py-20 md:py-28 bg-background">
       <div className="container">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className="text-center mb-16"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease, transform 0.7s ease",
+          }}
+        >
           <span className="text-sm font-medium text-accent uppercase tracking-wider">
             Unser Team
           </span>
@@ -43,15 +55,20 @@ export default function TeamSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {team.map((member, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              style={getItemStyle(index)}
+              className="bg-card rounded-2xl border border-border/50 shadow-sm overflow-hidden
+                hover:shadow-xl hover:-translate-y-3 hover:border-primary/20
+                transition-all duration-500 ease-out group"
             >
               {/* Avatar placeholder */}
-              <div className="h-48 bg-gradient-to-br from-primary/10 via-secondary to-accent/10 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-full bg-primary/20 border-4 border-card flex items-center justify-center">
+              <div className="h-48 bg-gradient-to-br from-primary/10 via-secondary to-accent/10 flex items-center justify-center
+                group-hover:from-primary/15 group-hover:to-accent/15 transition-all duration-500">
+                <div className="w-24 h-24 rounded-full bg-primary/20 border-4 border-card flex items-center justify-center
+                  group-hover:scale-110 group-hover:bg-primary/30 transition-all duration-500">
                   <span className="text-2xl font-serif font-bold text-primary">
                     {member.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                   </span>
@@ -59,7 +76,7 @@ export default function TeamSection() {
               </div>
 
               <div className="p-6">
-                <h3 className="font-semibold text-foreground text-lg">
+                <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors duration-300">
                   {member.name}
                 </h3>
                 <p className="text-accent font-medium text-sm mt-1">
@@ -75,24 +92,30 @@ export default function TeamSection() {
                 <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border/50">
                   <a
                     href={`mailto:${member.email}`}
-                    className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center hover:bg-primary/10 transition-colors"
+                    className="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center 
+                      hover:bg-primary hover:text-primary-foreground hover:scale-110
+                      transition-all duration-300"
                     title="E-Mail senden"
                   >
-                    <Mail className="w-4 h-4 text-primary" />
+                    <Mail className="w-4 h-4" />
                   </a>
                   <a
                     href={`tel:${member.phone.replace(/\s/g, "")}`}
-                    className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center hover:bg-primary/10 transition-colors"
+                    className="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center 
+                      hover:bg-primary hover:text-primary-foreground hover:scale-110
+                      transition-all duration-300"
                     title="Anrufen"
                   >
-                    <Phone className="w-4 h-4 text-primary" />
+                    <Phone className="w-4 h-4" />
                   </a>
                   <a
                     href="#"
-                    className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center hover:bg-primary/10 transition-colors"
+                    className="w-9 h-9 rounded-full bg-primary/5 flex items-center justify-center 
+                      hover:bg-primary hover:text-primary-foreground hover:scale-110
+                      transition-all duration-300"
                     title="LinkedIn"
                   >
-                    <Linkedin className="w-4 h-4 text-primary" />
+                    <Linkedin className="w-4 h-4" />
                   </a>
                 </div>
               </div>

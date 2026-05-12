@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import { Send, Phone, Mail, MapPin, CheckCircle2 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,10 @@ export default function ContactSection() {
     type: "quote" as "contact" | "quote",
   });
   const [submitted, setSubmitted] = useState(false);
+
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
 
   const submitMutation = trpc.inquiry.submit.useMutation({
     onSuccess: () => {
@@ -51,7 +56,7 @@ export default function ContactSection() {
       <section id="kontakt" className="py-20 md:py-28 bg-secondary/50">
         <div className="container">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6 animate-bounce">
               <CheckCircle2 className="w-8 h-8 text-green-600" />
             </div>
             <h2 className="text-3xl font-serif font-bold text-foreground mb-4">
@@ -60,7 +65,7 @@ export default function ContactSection() {
             <p className="text-muted-foreground text-lg mb-8">
               Wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich bei Ihnen melden.
             </p>
-            <Button onClick={() => setSubmitted(false)} variant="outline">
+            <Button onClick={() => setSubmitted(false)} variant="outline" className="hover:scale-105 transition-transform duration-300">
               Weitere Anfrage senden
             </Button>
           </div>
@@ -73,7 +78,15 @@ export default function ContactSection() {
     <section id="kontakt" className="py-20 md:py-28 bg-secondary/50">
       <div className="container">
         {/* Section Header */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
+        <div
+          ref={headerRef}
+          className="max-w-2xl mx-auto text-center mb-16"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease, transform 0.7s ease",
+          }}
+        >
           <span className="text-sm font-medium text-accent uppercase tracking-wider">
             Kontakt
           </span>
@@ -87,26 +100,34 @@ export default function ContactSection() {
 
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="bg-card rounded-xl p-6 border border-border/50">
+          <div
+            ref={contactRef}
+            className="space-y-6"
+            style={{
+              opacity: contactVisible ? 1 : 0,
+              transform: contactVisible ? "translateX(0)" : "translateX(-30px)",
+              transition: "opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s",
+            }}
+          >
+            <div className="bg-card rounded-xl p-6 border border-border/50 hover:shadow-lg hover:border-primary/20 transition-all duration-500">
               <h3 className="font-semibold text-foreground mb-4">Kontaktdaten</h3>
               <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <li className="flex items-start gap-3 group">
+                  <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Adresse</p>
                     <p className="text-sm text-muted-foreground">Frankfurt am Main</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <li className="flex items-start gap-3 group">
+                  <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Telefon</p>
                     <p className="text-sm text-muted-foreground">+49 (0) 69 / 000 000</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <li className="flex items-start gap-3 group">
+                  <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">E-Mail</p>
                     <p className="text-sm text-muted-foreground">info@gbg-consulting.de</p>
@@ -117,8 +138,16 @@ export default function ContactSection() {
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-card rounded-xl p-6 md:p-8 border border-border/50 shadow-sm">
+          <div
+            ref={formRef}
+            className="lg:col-span-2"
+            style={{
+              opacity: formVisible ? 1 : 0,
+              transform: formVisible ? "translateX(0)" : "translateX(30px)",
+              transition: "opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s",
+            }}
+          >
+            <form onSubmit={handleSubmit} className="bg-card rounded-xl p-6 md:p-8 border border-border/50 shadow-sm hover:shadow-lg transition-shadow duration-500">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -131,7 +160,7 @@ export default function ContactSection() {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                     placeholder="Max"
                   />
                 </div>
@@ -146,7 +175,7 @@ export default function ContactSection() {
                     required
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                     placeholder="Mustermann"
                   />
                 </div>
@@ -164,7 +193,7 @@ export default function ContactSection() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                     placeholder="max@beispiel.de"
                   />
                 </div>
@@ -178,7 +207,7 @@ export default function ContactSection() {
                     type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                     placeholder="+49 69 123456"
                   />
                 </div>
@@ -195,7 +224,7 @@ export default function ContactSection() {
                     type="text"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                     placeholder="Firma GmbH"
                   />
                 </div>
@@ -208,7 +237,7 @@ export default function ContactSection() {
                     name="type"
                     value={formData.type}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                   >
                     <option value="quote">Angebotsanfrage</option>
                     <option value="contact">Allgemeine Kontaktanfrage</option>
@@ -227,7 +256,7 @@ export default function ContactSection() {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
                   placeholder="z.B. Pensionsgutachten für Jahresabschluss"
                 />
               </div>
@@ -243,7 +272,7 @@ export default function ContactSection() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-colors resize-none"
+                  className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 resize-none hover:border-primary/40"
                   placeholder="Beschreiben Sie Ihr Anliegen..."
                 />
               </div>
@@ -251,7 +280,9 @@ export default function ContactSection() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2"
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 gap-2 
+                  hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]
+                  transition-all duration-300"
                 disabled={submitMutation.isPending}
               >
                 {submitMutation.isPending ? (
@@ -266,7 +297,7 @@ export default function ContactSection() {
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
                 Mit dem Absenden stimmen Sie unserer{" "}
-                <a href="/datenschutz" className="underline hover:text-foreground">Datenschutzerklärung</a> zu.
+                <a href="/datenschutz" className="underline hover:text-foreground transition-colors duration-200">Datenschutzerklärung</a> zu.
               </p>
             </form>
           </div>

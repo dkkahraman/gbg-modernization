@@ -26,3 +26,10 @@
 - [x] Zertifizierungs-/Mitgliedschafts-Logos: DAV, IVS, aba als Badge-Leiste im Hero-Bereich (Icon+Text-Badges; echte Logos können später ergänzt werden)
 - [x] FAQ-Sektion: 7 häufig gestellte Fragen zu Pensionsgutachten, BilMoG, Ablauf
 - [x] Sekundärer CTA: "Kostenlose Erstberatung" als alternative niedrigschwellige Kontaktoption
+
+## UX-Verbesserungen: Animationen
+
+- [x] useScrollAnimation Hook: Intersection Observer für Fade-in/Slide-up Animationen
+- [x] Hover-Effekte: Verbesserte Karten-Hover mit Scale, Shadow und Border-Transitions
+- [x] Scroll-Animationen: Staggered Fade-in für Testimonials, Team, Services, FAQ
+- [x] Smooth Transitions: Weiche Übergänge für Karten, Buttons, Formularfelder und Kontakt-Icons in allen neuen Sektionen
