@@ -4,6 +4,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import ShareButtons from "@/components/ShareButtons";
 import { Link, useParams } from "wouter";
 import { Calendar, User, Tag, ArrowLeft, Clock } from "lucide-react";
 import { Streamdown } from "streamdown";
@@ -217,8 +218,16 @@ export default function BlogArticle() {
             <Streamdown>{article.content}</Streamdown>
           </div>
 
+          {/* Share Buttons */}
+          <div className="mt-10 pt-6 border-t border-border">
+            <ShareButtons
+              title={article.title}
+              description={article.excerpt}
+            />
+          </div>
+
           {/* CTA */}
-          <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/10">
+          <div className="mt-8 p-6 rounded-xl bg-primary/5 border border-primary/10">
             <h3 className="text-lg font-semibold text-foreground mb-2">
               Individuelle Beratung gewünscht?
             </h3>

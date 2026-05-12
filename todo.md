@@ -84,3 +84,9 @@
 - [x] Einzelartikel-Seite: Separater Error-State für API-Fehler (nicht als 404 darstellen)
 - [x] Blog-SEO: JSON-LD Article-Schema pro Einzelartikel
 - [x] Vitest-Tests für Article-Router (listPublished/getBySlug/create/update/delete)
+
+## Social-Media-Share-Buttons
+
+- [x] ShareButtons-Komponente: LinkedIn, X/Twitter, E-Mail Share-Links mit Icons + Link kopieren
+- [x] Integration in BlogArticle.tsx: Share-Buttons nach dem Artikel-Content
+- [x] Hover-Effekte und Tooltip für die Share-Buttons
