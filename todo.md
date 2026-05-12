@@ -39,3 +39,9 @@
 - [x] Splash-Screen-Komponente: Elegantes GBG-Logo mit Fade-in Animation
 - [x] Übergangseffekt: Sanftes Ausblenden des Splash-Screens in die Hauptseite
 - [x] Session-basiert: Animation nur beim ersten Seitenaufruf pro Session anzeigen
+
+## Parallax-Effekt
+
+- [x] useParallax Hook: Scroll-basierter Parallax mit requestAnimationFrame für Performance
+- [x] Hero-Integration: Trust-Karten und Hintergrund-Elemente mit unterschiedlicher Scroll-Geschwindigkeit
+- [x] Mobile-Deaktivierung: Parallax auf kleinen Bildschirmen deaktivieren für Performance
