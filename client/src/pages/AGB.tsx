@@ -1,7 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function AGB() {
+  useSEO({
+    title: "Allgemeine Geschäftsbedingungen",
+    description: "AGB der GBG Consulting für betriebliche Altersversorgung GmbH.",
+    path: "/agb",
+    noindex: true,
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

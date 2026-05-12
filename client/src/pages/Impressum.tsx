@@ -1,7 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function Impressum() {
+  useSEO({
+    title: "Impressum",
+    description: "Impressum der GBG Consulting für betriebliche Altersversorgung GmbH. Angaben gemäß § 5 TMG.",
+    path: "/impressum",
+    noindex: true,
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

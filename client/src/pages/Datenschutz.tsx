@@ -1,7 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function Datenschutz() {
+  useSEO({
+    title: "Datenschutzerklärung",
+    description: "Datenschutzerklärung der GBG Consulting für betriebliche Altersversorgung GmbH. Informationen zur Verarbeitung personenbezogener Daten.",
+    path: "/datenschutz",
+    noindex: true,
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

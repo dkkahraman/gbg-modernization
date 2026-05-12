@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Calculator } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const rechengroessen2026 = [
   { bezeichnung: "Beitragsbemessungsgrenze allg. RV (West)", wert: "7.550 EUR/Monat" },
@@ -20,6 +21,12 @@ const steuerlicheWerte2026 = [
 ];
 
 export default function Rechengroessen() {
+  useSEO({
+    title: "Rechengrößen der Sozialversicherung 2026",
+    description: "Aktuelle Rechengrößen der Sozialversicherung 2026: Beitragsbemessungsgrenzen, Bezugsgrößen und weitere relevante Werte für die betriebliche Altersversorgung.",
+    path: "/rechengroessen",
+  });
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />

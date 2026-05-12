@@ -52,3 +52,10 @@
 - [x] Persistente Speicherung: Nutzerentscheidung in localStorage speichern (mit try/catch)
 - [x] Link zur Datenschutzerklärung: Direkte Verlinkung aus dem Banner
 - [x] Integration in App.tsx: Banner am unteren Bildschirmrand mit Animation
+
+## SEO-Optimierung
+
+- [x] SEO-Hook/Komponente: Dynamische Meta-Tags (title, description, OG, Twitter Cards) pro Seite
+- [x] JSON-LD strukturierte Daten: Organization, ProfessionalService, FAQPage, WebSite Schema
+- [x] robots.txt mit Sitemap-Verweis und Crawler-Regeln
+- [x] Kanonische URLs und theme-color Meta-Tag in index.html

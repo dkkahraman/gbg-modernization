@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { trpc } from "@/lib/trpc";
 import { Briefcase, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSEO } from "@/hooks/useSEO";
 
 const typeLabels: Record<string, string> = {
   full_time: "Vollzeit",
@@ -11,6 +12,11 @@ const typeLabels: Record<string, string> = {
 };
 
 export default function Stellenangebote() {
+  useSEO({
+    title: "Stellenangebote & Karriere",
+    description: "Aktuelle Stellenangebote bei GBG Consulting. Werden Sie Teil unseres Teams im Bereich versicherungsmathematische Beratung und betriebliche Altersversorgung.",
+    path: "/stellenangebote",
+  });
   const { data: jobs, isLoading } = trpc.jobs.listActive.useQuery();
 
   return (
