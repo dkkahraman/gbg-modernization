@@ -2,12 +2,14 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { bilmogRouter } from "./bilmog";
 import { z } from "zod";
 import { createInquiry, getInquiries, getActiveJobPostings, getAllJobPostings, createJobPosting, getPublishedArticles, getArticleBySlug, getAllArticles, createArticle, updateArticle, deleteArticle } from "./db";
 import { notifyOwner } from "./_core/notification";
 
 export const appRouter = router({
   system: systemRouter,
+  bilmog: bilmogRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
