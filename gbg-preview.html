@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GBG Consulting – Vorschau</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #1a2b4a;
+    --primary-light: rgba(26,43,74,0.08);
+    --accent: #c9a84c;
+    --accent-light: rgba(201,168,76,0.12);
+    --bg: #fafafa;
+    --card: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --muted: #6b7280;
+    --foreground: #111827;
+    --secondary-bg: #f4f6f9;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--foreground); -webkit-font-smoothing: antialiased; }
+  .serif { font-family: 'Playfair Display', serif; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { display: flex; flex-direction: column; }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--primary); line-height: 1; }
+  .logo-sub { font-size: 0.65rem; color: var(--muted); margin-top: 2px; letter-spacing: 0.02em; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(17,24,39,0.75); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary); color: #fff; font-size: 0.875rem; font-weight: 500;
+    padding: 0.5rem 1.25rem; border-radius: 0.5rem; border: none; cursor: pointer;
+    text-decoration: none; transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: .9; }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh; display: flex; align-items: center; padding-top: 7rem; padding-bottom: 4rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #fafafa 50%, #f0f4f8 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+    opacity: .03;
+    background-image: repeating-linear-gradient(45deg, currentColor 0, currentColor 1px, transparent 0, transparent 50%);
+    background-size: 40px 40px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.375rem 0.75rem; border-radius: 9999px;
+    background: var(--accent-light); border: 1px solid rgba(201,168,76,0.25);
+    font-size: 0.75rem; font-weight: 500; color: var(--foreground); margin-bottom: 1.5rem;
+  }
+  .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; line-height: 1.15; margin-bottom: 1.5rem; color: var(--foreground); }
+  .hero h1 span { color: var(--primary); }
+  .hero p { font-size: 1.125rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; max-width: 480px; }
+  .hero-btns { display: flex; gap: 1rem; margin-bottom: 2.5rem; }
+  .btn-primary {
+    background: var(--primary); color: #fff; padding: 0.875rem 2rem;
+    border-radius: 0.5rem; font-weight: 500; font-size: 1rem; border: none; cursor: pointer;
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn-primary:hover { opacity: .9; }
+  .btn-outline {
+    background: transparent; color: var(--primary); padding: 0.875rem 2rem;
+    border-radius: 0.5rem; font-weight: 500; font-size: 1rem;
+    border: 1px solid rgba(26,43,74,0.2); cursor: pointer;
+    display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+    transition: background .2s;
+  }
+  .btn-outline:hover { background: var(--primary-light); }
+  .hero-badges { display: flex; align-items: center; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .hero-badges-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .cert-badge {
+    display: flex; align-items: center; gap: 0.375rem;
+    padding: 0.375rem 0.75rem; border-radius: 0.375rem;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 0.75rem; font-weight: 600; color: var(--foreground);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .cert-badge svg { color: var(--primary); }
+  .hero-cards { display: grid; gap: 1rem; }
+  .hero-card {
+    background: var(--card); border-radius: 0.75rem; padding: 1.5rem;
+    border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: box-shadow .3s, transform .3s;
+  }
+  .hero-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .hero-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .icon-box { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: var(--primary-light); display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; }
+  .icon-box svg { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+  .hero-card h3 { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .hero-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+  .bilmog-vals { display: flex; gap: 2rem; margin-top: 0.75rem; }
+  .bilmog-val span:first-child { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+  .bilmog-val span:last-child { font-size: 0.7rem; color: var(--muted); margin-left: 0.25rem; }
+
+  /* SERVICES */
+  .section { padding: 5rem 0; }
+  .section-alt { background: var(--secondary-bg); }
+  .section-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
+  .section-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; color: var(--foreground); margin: 0.75rem 0 1rem; }
+  .section-desc { font-size: 1.0625rem; color: var(--muted); line-height: 1.65; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .service-card {
+    background: var(--card); border-radius: 0.75rem; padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+    cursor: default;
+  }
+  .service-card:hover { border-color: rgba(26,43,74,0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-6px) scale(1.01); }
+  .service-card:hover .icon-box { background: rgba(26,43,74,0.12); }
+  .service-card:hover h3 { color: var(--primary); }
+  .service-card h3 { font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem; transition: color .3s; }
+  .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* BILMOG */
+  .bilmog-card {
+    background: var(--card); border-radius: 1rem; border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07); overflow: hidden; max-width: 900px; margin: 0 auto;
+  }
+  .bilmog-header {
+    padding: 1.75rem 2rem; border-bottom: 1px solid var(--border);
+    background: rgba(26,43,74,0.015);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .bilmog-header-left { display: flex; align-items: center; gap: 1rem; }
+  .bilmog-icon { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: var(--primary-light); display: flex; align-items: center; justify-content: center; }
+  .bilmog-icon svg { width: 1.25rem; height: 1.25rem; color: var(--primary); }
+  .bilmog-header h3 { font-weight: 600; font-size: 0.975rem; }
+  .bilmog-header p { font-size: 0.8rem; color: var(--muted); }
+  .bilmog-header-right { display: flex; align-items: center; gap: 1rem; }
+  .live-badge { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: #f0fdf4; border: 1px solid #bbf7d0; font-size: 0.7rem; font-weight: 500; color: #16a34a; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+  .buba-link { font-size: 0.75rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 3px; }
+  .buba-link:hover { color: var(--primary); }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { border-bottom: 1px solid var(--border); }
+  th { text-align: left; padding: 1rem 2rem; font-size: 0.8rem; font-weight: 600; color: var(--foreground); }
+  th:not(:first-child) { text-align: right; }
+  tbody tr { border-bottom: 1px solid rgba(0,0,0,0.05); transition: background .2s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(26,43,74,0.02); }
+  tbody tr.prognose { background: rgba(201,168,76,0.05); }
+  tbody tr.prognose:hover { background: rgba(201,168,76,0.1); }
+  td { padding: 1rem 2rem; font-size: 0.875rem; }
+  td:not(:first-child) { text-align: right; font-family: 'Inter', monospace; }
+  .prognose-label { display: inline-flex; align-items: center; padding: 0.1rem 0.5rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 500; background: var(--accent-light); border: 1px solid rgba(201,168,76,0.25); margin-left: 0.5rem; color: #92400e; }
+  .trend-up { color: #d97706; font-size: 0.75rem; margin-left: 0.25rem; }
+  .bold-primary { font-weight: 700; color: var(--primary); }
+  .bilmog-footer { padding: 1rem 2rem; background: rgba(0,0,0,0.015); border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted); line-height: 1.6; display: flex; gap: 0.5rem; }
+  .bilmog-cta { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+  .bilmog-cta a { color: var(--primary); font-weight: 500; text-decoration: none; }
+  .bilmog-cta a:hover { text-decoration: underline; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+  .about h2 { font-family: 'Playfair Display', serif; font-size: 2.25rem; font-weight: 700; margin: 0.75rem 0 1.5rem; }
+  .about p { color: var(--muted); line-height: 1.7; margin-bottom: 1rem; font-size: 0.975rem; }
+  .facts { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .facts li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; }
+  .check { color: var(--accent); margin-top: 1px; flex-shrink: 0; }
+  .values { display: flex; flex-direction: column; gap: 1.25rem; }
+  .value-card {
+    background: var(--card); border-radius: 0.75rem; padding: 1.5rem;
+    border: 1px solid var(--border); display: flex; gap: 1rem; align-items: flex-start;
+    transition: box-shadow .3s, transform .3s;
+  }
+  .value-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateX(-6px); }
+  .value-card h3 { font-weight: 600; margin-bottom: 0.25rem; font-size: 1rem; }
+  .value-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+  .stat-box {
+    text-align: center; padding: 1.25rem; background: var(--secondary-bg); border-radius: 0.75rem;
+    transition: background .3s, transform .3s;
+  }
+  .stat-box:hover { background: var(--primary-light); transform: scale(1.04); }
+  .stat-box .num { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
+  .stat-box .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; max-width: 960px; margin: 0 auto; }
+  .contact-card { background: var(--card); border-radius: 0.75rem; padding: 1.5rem; border: 1px solid var(--border); }
+  .contact-card h3 { font-weight: 600; margin-bottom: 1.25rem; }
+  .contact-item { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; align-items: flex-start; }
+  .contact-icon { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+  .contact-label { font-size: 0.8rem; font-weight: 500; margin-bottom: 0.15rem; }
+  .contact-val { font-size: 0.8rem; color: var(--muted); }
+  .form-card { background: var(--card); border-radius: 0.75rem; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { margin-bottom: 1rem; }
+  label { display: block; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.375rem; }
+  input, textarea, select {
+    width: 100%; padding: 0.625rem 1rem; border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.15); background: var(--bg); font-size: 0.875rem;
+    font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s;
+    color: var(--foreground);
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--primary); }
+  textarea { resize: none; }
+  .form-submit {
+    width: 100%; background: var(--primary); color: #fff; padding: 0.875rem;
+    border-radius: 0.5rem; font-weight: 500; font-size: 1rem; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: opacity .2s;
+  }
+  .form-submit:hover { opacity: .9; }
+  .form-legal { text-align: center; font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
+
+  /* FOOTER */
+  footer { background: var(--primary); color: rgba(255,255,255,0.7); padding: 4rem 0 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+  .footer-col h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,0.6); margin-bottom: 1rem; font-weight: 600; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul li a { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color .2s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-contact-item { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.8rem; }
+  .footer-contact-item svg { width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.7rem; color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+  svg { display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-text">GBG</span>
+        <span class="logo-sub">Consulting für bAV</span>
+      </div>
+      <div class="nav-links">
+        <a href="#dienstleistungen">Dienstleistungen</a>
+        <a href="#bilmog">BilMoG Zins</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#">Fachartikel</a>
+        <a href="#">Karriere</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <a href="#kontakt" class="nav-cta">Angebotsanfrage</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Seit über 25 Jahren Ihr Partner
+        </div>
+        <h1 class="serif">Gute Beratung <span>Gewinnt!</span></h1>
+        <p>Alles rund um die betriebliche Altersversorgung – kompetent, zuverlässig und maßgeschneidert für Ihr Unternehmen.</p>
+        <div class="hero-btns">
+          <a href="#kontakt" class="btn-primary">
+            Angebotsanfrage
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#kontakt" class="btn-outline">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            Kostenlose Erstberatung
+          </a>
+        </div>
+        <div class="hero-badges">
+          <span class="hero-badges-label">Mitglied in:</span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            DAV
+          </span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            IVS
+          </span>
+          <span class="cert-badge">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            aba
+          </span>
+        </div>
+      </div>
+      <div class="hero-cards">
+        <div class="hero-card-grid">
+          <div class="hero-card">
+            <div class="icon-box">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Expertise</h3>
+            <p>Versicherungsmathematische Gutachten auf höchstem Niveau</p>
+          </div>
+          <div class="hero-card">
+            <div class="icon-box" style="background: rgba(201,168,76,0.12);">
+              <svg width="20" height="20" fill="none" stroke="#c9a84c" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <h3>Erfahrung</h3>
+            <p>Über 25 Jahre Kompetenz in der bAV-Beratung</p>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="icon-box">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Aktuelle BilMoG-Prognose</h3>
+          <div class="bilmog-vals">
+            <div class="bilmog-val"><span>2,64%</span><span>7-jährig</span></div>
+            <div class="bilmog-val"><span style="color:#92400e;">2,30%</span><span>10-jährig</span></div>
+          </div>
+          <p style="font-size:0.7rem;color:var(--muted);margin-top:0.5rem;">GBG-Prognose 12.2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="dienstleistungen">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Unsere Expertise</span>
+      <h2 class="section-title serif">Dienstleistungen</h2>
+      <p class="section-desc">Umfassende Beratung und Betreuung in allen Bereichen der betrieblichen Altersversorgung.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Versicherungsmathematische Gutachten</h3>
+        <p>Jahresabschluss-sichere Bewertung Ihrer Pensionsverpflichtungen nach HGB, IFRS und US-GAAP – präzise, termingerecht und prüfungsfest.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg></div>
+        <h3>Pensionsgutachten</h3>
+        <p>Individuelle Gutachten für Direktzusagen, Gesamtversorgungssysteme und GGF-Pensionszusagen – handels- und steuerrechtlich korrekt dokumentiert.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3>GGF-Versorgung</h3>
+        <p>Analyse, Neugestaltung und Bewertung von Versorgungszusagen für Gesellschafter-Geschäftsführer – mit Blick auf steuerliche Anerkennung und wirtschaftliche Tragfähigkeit.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.375 2.625a2.121 2.121 0 013 3L12 15l-4 1 1-4z"/></svg></div>
+        <h3>Versorgungsausgleich</h3>
+        <p>Interne und externe Teilung von Betriebsrentenanwartschaften bei Scheidungsverfahren – gerichtsfest berechnet und termingerecht geliefert.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>U-Kassen Betreuung</h3>
+        <p>Laufende Betreuung von Unterstützungskassen: Beitragskalkulation, Jahresabschluss, Leistungsfallbearbeitung und Anpassungsprüfung aus einer Hand.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3>Planungsrechnung</h3>
+        <p>Mehrjährige Prognose der Pensionsrückstellungen für Ihre Unternehmensplanung, M&A-Prozesse und Liquiditätssteuerung.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <h3>Anpassung von Betriebsrenten</h3>
+        <p>Überprüfung der Anpassungspflicht nach § 16 BetrAVG und rechtssichere Dokumentation der wirtschaftlichen Lage Ihres Unternehmens.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+        <h3>Auslagerung von Pensionszusagen</h3>
+        <p>Beratung und Umsetzung bei der Übertragung auf Pensionskassen, Pensionsfonds oder Lebensversicherungen – inklusive Liquiditätsplanung und Enthaftungsstruktur.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon-box"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <h3>Überprüfung der Pensionszusage</h3>
+        <p>Systematischer Check bestehender Zusagen auf Fehler, Unklarheiten und Optimierungspotenziale – damit Probleme erkannt werden, bevor sie zum Streitfall werden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BILMOG -->
+<section class="section section-alt" id="bilmog">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Aktuelle Zinsentwicklung</span>
+      <h2 class="section-title serif">BilMoG Zins</h2>
+      <p class="section-desc">Die aktuellen Rechnungszinssätze nach § 253 Abs. 2 HGB und unsere Prognose für die weitere Entwicklung.</p>
+    </div>
+    <div class="bilmog-card">
+      <div class="bilmog-header">
+        <div class="bilmog-header-left">
+          <div class="bilmog-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div>
+            <h3>Rechnungszinssätze nach HGB</h3>
+            <p>§ 253 Abs. 2 HGB (BilMoG)</p>
+          </div>
+        </div>
+        <div class="bilmog-header-right">
+          <span class="live-badge"><span class="live-dot"></span>Live-Daten</span>
+          <a href="#" class="buba-link">Bundesbank ↗</a>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Zeitraum</th>
+            <th style="text-align:right">7-jährig</th>
+            <th style="text-align:right">10-jährig</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Veröffentlicht 12.2025</td>
+            <td>2,22 % <span class="trend-up">↑</span></td>
+            <td>2,06 % <span class="trend-up">↑</span></td>
+          </tr>
+          <tr>
+            <td>Veröffentlicht 04.2026</td>
+            <td>2,33 % <span class="trend-up">↑</span></td>
+            <td>2,13 % <span class="trend-up">↑</span></td>
+          </tr>
+          <tr class="prognose">
+            <td>
+              <span class="bold-primary">GBG-Prognose 12.2026</span>
+              <span class="prognose-label">Prognose</span>
+            </td>
+            <td class="bold-primary">2,64 % <span class="trend-up">↑</span></td>
+            <td class="bold-primary">2,30 % <span class="trend-up">↑</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bilmog-footer">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Die <strong>GBG-Prognose</strong> basiert auf unserer Analyse der aktuellen Zinsentwicklung am Kapitalmarkt. Die veröffentlichten Werte stammen von der <a href="#" style="color:var(--primary)">Deutschen Bundesbank</a> (§ 253 Abs. 2 HGB). Der 7-jährige Durchschnittszins gilt für Pensionsrückstellungen; der 10-jährige Zins dient als ergänzende Kennzahl.
+      </div>
+    </div>
+    <p class="bilmog-cta">Fragen zur Auswirkung des BilMoG-Zinses auf Ihre Bilanz? <a href="#kontakt">Jetzt kostenlos beraten lassen</a></p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="ueber-uns">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="about-label">Über uns</span>
+        <h2>Ihr Partner für betriebliche Altersversorgung</h2>
+        <p>Die GBG Consulting für betriebliche Altersversorgung GmbH ist ein unabhängiges Beratungsunternehmen mit Standorten in <strong>Hamburg und Köln</strong>. Seit über 25 Jahren unterstützen wir Unternehmen aller Größenordnungen bei der Gestaltung, Bewertung und Verwaltung ihrer betrieblichen Altersversorgung.</p>
+        <p>Unser Team aus erfahrenen Aktuaren und Beratern verbindet tiefgreifendes Fachwissen mit praxisnaher Beratung. Wir stehen für Präzision, Zuverlässigkeit und individuelle Lösungen.</p>
+        <ul class="facts">
+          <li><span class="check">✓</span> Über 25 Jahre Erfahrung in der bAV-Beratung</li>
+          <li><span class="check">✓</span> <strong>Über 2.000 zufriedene Mandanten</strong> aus Industrie und Mittelstand</li>
+          <li><span class="check">✓</span> Zertifizierte Aktuare (DAV / IVS)</li>
+          <li><span class="check">✓</span> Unabhängige und neutrale Beratung</li>
+          <li><span class="check">✓</span> Individuelle Lösungen für jede Unternehmensgröße</li>
+        </ul>
+      </div>
+      <div>
+        <div class="values">
+          <div class="value-card">
+            <div class="icon-box" style="flex-shrink:0">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div><h3>Präzision</h3><p>Exakte versicherungsmathematische Berechnungen nach höchsten Standards.</p></div>
+          </div>
+          <div class="value-card">
+            <div class="icon-box" style="flex-shrink:0">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div><h3>Partnerschaft</h3><p>Langfristige, vertrauensvolle Zusammenarbeit mit unseren Mandanten.</p></div>
+          </div>
+          <div class="value-card">
+            <div class="icon-box" style="flex-shrink:0">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div><h3>Kompetenz</h3><p>Hochqualifizierte Aktuare und Berater mit jahrzehntelanger Erfahrung.</p></div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box"><div class="num">25+</div><div class="lbl">Jahre Erfahrung</div></div>
+          <div class="stat-box"><div class="num">2.000+</div><div class="lbl">Mandanten</div></div>
+          <div class="stat-box"><div class="num">100%</div><div class="lbl">Unabhängig</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="kontakt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Kontakt</span>
+      <h2 class="section-title serif">Angebotsanfrage</h2>
+      <p class="section-desc">Senden Sie uns Ihre Anfrage – wir erstellen Ihnen gerne ein individuelles Angebot.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Kontaktdaten</h3>
+        <div class="contact-item">
+          <span class="contact-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div>
+            <div class="contact-label">Standorte</div>
+            <div class="contact-val">Hamburg</div>
+            <div class="contact-val">Köln</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></span>
+          <div>
+            <div class="contact-label">Telefon</div>
+            <div class="contact-val">+49 (0) 40 / 000 000</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <div>
+            <div class="contact-label">E-Mail</div>
+            <div class="contact-val">info@gbg-consulting.de</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-row">
+          <div><label>Vorname *</label><input type="text" placeholder="Max" /></div>
+          <div><label>Nachname *</label><input type="text" placeholder="Mustermann" /></div>
+        </div>
+        <div class="form-row">
+          <div><label>E-Mail *</label><input type="email" placeholder="max@beispiel.de" /></div>
+          <div><label>Telefon</label><input type="tel" placeholder="+49 40 123456" /></div>
+        </div>
+        <div class="form-row">
+          <div><label>Unternehmen</label><input type="text" placeholder="Firma GmbH" /></div>
+          <div><label>Art der Anfrage</label><select><option>Angebotsanfrage</option><option>Allgemeine Kontaktanfrage</option></select></div>
+        </div>
+        <div class="form-group"><label>Betreff *</label><input type="text" placeholder="z.B. Pensionsgutachten für Jahresabschluss" /></div>
+        <div class="form-group"><label>Nachricht *</label><textarea rows="4" placeholder="Beschreiben Sie Ihr Anliegen..."></textarea></div>
+        <button class="form-submit">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Anfrage absenden
+        </button>
+        <p class="form-legal">Mit dem Absenden stimmen Sie unserer <a href="#" style="text-decoration:underline">Datenschutzerklärung</a> zu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GBG</div>
+        <p style="font-size:0.8rem;line-height:1.6;">Consulting für betriebliche Altersversorgung GmbH</p>
+        <p style="font-size:0.8rem;margin-top:0.75rem;line-height:1.6;">Ihr kompetenter Partner für alle Fragen rund um die betriebliche Altersversorgung.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="#">Versicherungsmathematische Gutachten</a></li>
+          <li><a href="#">Pensionsgutachten</a></li>
+          <li><a href="#">GGF-Versorgung</a></li>
+          <li><a href="#">Versorgungsausgleich</a></li>
+          <li><a href="#">U-Kassen Betreuung</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul>
+          <li><a href="#">Über uns</a></li>
+          <li><a href="#">Stellenangebote</a></li>
+          <li><a href="#">Rechengrößen</a></li>
+          <li><a href="#">BilMoG Zinsentwicklung</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.6);margin-bottom:1rem;font-weight:600;">Kontakt</h4>
+        <div class="footer-contact-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><span style="display:block">Hamburg</span><span style="display:block">Köln</span></div>
+        </div>
+        <div class="footer-contact-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <span>+49 (0) 40 / 000 000</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>info@gbg-consulting.de</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GBG Consulting für betriebliche Altersversorgung GmbH. Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a href="#">Datenschutz</a>
+        <a href="#">Impressum</a>
+        <a href="#">AGB</a>
+        <a href="#">Cookie-Einstellungen</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
