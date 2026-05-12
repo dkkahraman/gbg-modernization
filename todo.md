@@ -59,3 +59,9 @@
 - [x] JSON-LD strukturierte Daten: Organization, ProfessionalService, FAQPage, WebSite Schema
 - [x] robots.txt mit Sitemap-Verweis und Crawler-Regeln
 - [x] Kanonische URLs und theme-color Meta-Tag in index.html
+
+## Back-to-Top-Button
+
+- [x] BackToTop-Komponente: Dezenter Button am unteren rechten Rand mit Fade-in nach Scroll
+- [x] Smooth Scroll: Weiches Zurückscrollen nach oben bei Klick
+- [x] Integration in App.tsx

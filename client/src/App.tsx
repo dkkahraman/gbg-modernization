@@ -13,6 +13,7 @@ import Stellenangebote from "./pages/Stellenangebote";
 import Rechengroessen from "./pages/Rechengroessen";
 import SplashScreen from "./components/SplashScreen";
 import CookieConsent from "./components/CookieConsent";
+import BackToTop from "./components/BackToTop";
 
 function Router() {
   return (
@@ -64,6 +65,7 @@ function App() {
           >
             <Router />
             <CookieConsent />
+            <BackToTop />
           </div>
         </TooltipProvider>
       </ThemeProvider>
