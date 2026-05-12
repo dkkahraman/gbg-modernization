@@ -52,12 +52,15 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>Frankfurt am Main</span>
+                <div>
+                  <span className="block">Hamburg</span>
+                  <span className="block">Köln</span>
+                </div>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 shrink-0" />
-                <a href="tel:+4969000000" className="hover:text-primary-foreground transition-colors">
-                  +49 (0) 69 / 000 000
+                <a href="tel:+4940000000" className="hover:text-primary-foreground transition-colors">
+                  +49 (0) 40 / 000 000
                 </a>
               </li>
               <li className="flex items-center gap-2">

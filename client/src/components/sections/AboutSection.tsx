@@ -21,7 +21,7 @@ const values = [
 
 const facts = [
   "Über 25 Jahre Erfahrung in der bAV-Beratung",
-  "Hunderte zufriedene Mandanten aus Industrie und Mittelstand",
+  "Über 2.000 zufriedene Mandanten aus Industrie und Mittelstand",
   "Zertifizierte Aktuare (DAV / IVS)",
   "Unabhängige und neutrale Beratung",
   "Individuelle Lösungen für jede Unternehmensgröße",
@@ -53,7 +53,7 @@ export default function AboutSection() {
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               Die GBG Consulting für betriebliche Altersversorgung GmbH ist ein unabhängiges 
-              Beratungsunternehmen mit Sitz in Frankfurt am Main. Seit über 25 Jahren unterstützen 
+              Beratungsunternehmen mit Standorten in Hamburg und Köln. Seit über 25 Jahren unterstützen
               wir Unternehmen aller Größenordnungen bei der Gestaltung, Bewertung und Verwaltung 
               ihrer betrieblichen Altersversorgung.
             </p>
@@ -116,7 +116,7 @@ export default function AboutSection() {
             <div ref={statsRef} className="grid grid-cols-3 gap-4 mt-8">
               {[
                 { value: "25+", label: "Jahre Erfahrung" },
-                { value: "500+", label: "Mandanten" },
+                { value: "2.000+", label: "Mandanten" },
                 { value: "100%", label: "Unabhängig" },
               ].map((stat, index) => (
                 <div

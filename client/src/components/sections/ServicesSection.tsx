@@ -5,47 +5,47 @@ const services = [
   {
     icon: FileText,
     title: "Versicherungsmathematische Gutachten",
-    description: "Professionelle Bewertung Ihrer Pensionsverpflichtungen nach HGB, IFRS und US-GAAP.",
+    description: "Jahresabschluss-sichere Bewertung Ihrer Pensionsverpflichtungen nach HGB, IFRS und US-GAAP – präzise, termingerecht und prüfungsfest.",
   },
   {
     icon: Calculator,
     title: "Pensionsgutachten",
-    description: "Präzise Berechnung und Bewertung von Pensionsrückstellungen für Ihren Jahresabschluss.",
+    description: "Individuelle Gutachten für Direktzusagen, Gesamtversorgungssysteme und GGF-Pensionszusagen – handels- und steuerrechtlich korrekt dokumentiert.",
   },
   {
     icon: Users,
     title: "GGF-Versorgung",
-    description: "Maßgeschneiderte Versorgungslösungen für Gesellschafter-Geschäftsführer/-innen.",
+    description: "Analyse, Neugestaltung und Bewertung von Versorgungszusagen für Gesellschafter-Geschäftsführer – mit Blick auf steuerliche Anerkennung und wirtschaftliche Tragfähigkeit.",
   },
   {
     icon: Scale,
     title: "Versorgungsausgleich",
-    description: "Fachkundige Berechnung und Begleitung bei Versorgungsausgleichsverfahren.",
+    description: "Interne und externe Teilung von Betriebsrentenanwartschaften bei Scheidungsverfahren – gerichtsfest berechnet und termingerecht geliefert.",
   },
   {
     icon: Building2,
     title: "U-Kassen Betreuung",
-    description: "Umfassende Betreuung und Verwaltung von Unterstützungskassen.",
+    description: "Laufende Betreuung von Unterstützungskassen: Beitragskalkulation, Jahresabschluss, Leistungsfallbearbeitung und Anpassungsprüfung aus einer Hand.",
   },
   {
     icon: ClipboardCheck,
     title: "Planungsrechnung",
-    description: "Vorausschauende Planung der Rückstellungsentwicklung für Ihre Bilanz.",
+    description: "Mehrjährige Prognose der Pensionsrückstellungen für Ihre Unternehmensplanung, M&A-Prozesse und Liquiditätssteuerung.",
   },
   {
     icon: ArrowUpRight,
     title: "Anpassung von Betriebsrenten",
-    description: "Prüfung und Durchführung der gesetzlichen Rentenanpassungspflicht.",
+    description: "Überprüfung der Anpassungspflicht nach § 16 BetrAVG und rechtssichere Dokumentation der wirtschaftlichen Lage Ihres Unternehmens.",
   },
   {
     icon: Briefcase,
     title: "Auslagerung von Pensionszusagen",
-    description: "Strategische Beratung zur Auslagerung und Enthaftung von Pensionsverpflichtungen.",
+    description: "Beratung und Umsetzung bei der Übertragung auf Pensionskassen, Pensionsfonds oder Lebensversicherungen – inklusive Liquiditätsplanung und Enthaftungsstruktur.",
   },
   {
     icon: ShieldCheck,
     title: "Überprüfung der Pensionszusage",
-    description: "Rechtliche und versicherungsmathematische Prüfung bestehender Zusagen.",
+    description: "Systematischer Check bestehender Zusagen auf Fehler, Unklarheiten und Optimierungspotenziale – damit Probleme erkannt werden, bevor sie zum Streitfall werden.",
   },
 ];
 

@@ -115,8 +115,9 @@ export default function ContactSection() {
                 <li className="flex items-start gap-3 group">
                   <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
-                    <p className="text-sm font-medium text-foreground">Adresse</p>
-                    <p className="text-sm text-muted-foreground">Frankfurt am Main</p>
+                    <p className="text-sm font-medium text-foreground">Standorte</p>
+                    <p className="text-sm text-muted-foreground">Hamburg</p>
+                    <p className="text-sm text-muted-foreground">Köln</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3 group">
