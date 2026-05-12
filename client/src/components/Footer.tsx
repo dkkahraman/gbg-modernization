@@ -92,6 +92,15 @@ export default function Footer() {
               <Link href="/agb" className="hover:text-primary-foreground transition-colors">
                 AGB
               </Link>
+              <button
+                onClick={() => {
+                  try { localStorage.removeItem("gbg-cookie-consent"); } catch {}
+                  window.location.reload();
+                }}
+                className="hover:text-primary-foreground transition-colors cursor-pointer"
+              >
+                Cookie-Einstellungen
+              </button>
             </div>
           </div>
         </div>

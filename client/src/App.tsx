@@ -12,6 +12,7 @@ import AGB from "./pages/AGB";
 import Stellenangebote from "./pages/Stellenangebote";
 import Rechengroessen from "./pages/Rechengroessen";
 import SplashScreen from "./components/SplashScreen";
+import CookieConsent from "./components/CookieConsent";
 
 function Router() {
   return (
@@ -62,6 +63,7 @@ function App() {
             }}
           >
             <Router />
+            <CookieConsent />
           </div>
         </TooltipProvider>
       </ThemeProvider>

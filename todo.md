@@ -45,3 +45,10 @@
 - [x] useParallax Hook: Scroll-basierter Parallax mit requestAnimationFrame für Performance
 - [x] Hero-Integration: Trust-Karten und Hintergrund-Elemente mit unterschiedlicher Scroll-Geschwindigkeit
 - [x] Mobile-Deaktivierung: Parallax auf kleinen Bildschirmen deaktivieren für Performance
+
+## Cookie-Consent-Banner
+
+- [x] CookieConsent-Komponente: DSGVO-konformes Banner mit Akzeptieren/Ablehnen/Einstellungen
+- [x] Persistente Speicherung: Nutzerentscheidung in localStorage speichern (mit try/catch)
+- [x] Link zur Datenschutzerklärung: Direkte Verlinkung aus dem Banner
+- [x] Integration in App.tsx: Banner am unteren Bildschirmrand mit Animation
