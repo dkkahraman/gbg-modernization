@@ -60,6 +60,24 @@ export default function HeroSection() {
               </a>
             </div>
 
+            {/* Stats Strip */}
+            <div className="flex items-center gap-6 mb-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">2.000+</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Mandanten</div>
+              </div>
+              <div className="w-px h-10 bg-border/60" />
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">25+</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Jahre Erfahrung</div>
+              </div>
+              <div className="w-px h-10 bg-border/60" />
+              <div className="text-center">
+                <div className="text-2xl font-bold text-primary">100%</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Unabhängig</div>
+              </div>
+            </div>
+
             {/* Zertifizierungs-Logos */}
             <div className="flex items-center gap-6 pt-6 border-t border-border/50">
               <span className="text-xs text-muted-foreground uppercase tracking-wider shrink-0">Mitglied in:</span>
