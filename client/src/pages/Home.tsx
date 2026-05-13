@@ -35,9 +35,9 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <BilMoGSection />
-        <TestimonialsSection />
         <AboutSection />
         <TeamSection />
+        <TestimonialsSection />
         <FAQSection />
         <ContactSection />
       </main>
