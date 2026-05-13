@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
-import { Send, Phone, Mail, MapPin, CheckCircle2 } from "lucide-react";
+import { Send, Phone, Mail, MapPin, CheckCircle2, Clock, UserCheck, Star } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ContactSection() {
@@ -124,15 +124,41 @@ export default function ContactSection() {
                   <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Telefon</p>
-                    <p className="text-sm text-muted-foreground">+49 (0) 40 / 000 000</p>
+                    <a href="tel:+4940000000" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      +49 (0) 40 / 000 000
+                    </a>
                   </div>
                 </li>
                 <li className="flex items-start gap-3 group">
                   <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">E-Mail</p>
-                    <p className="text-sm text-muted-foreground">info@gbg-consulting.de</p>
+                    <a href="mailto:info@gbg-consulting.de" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      info@gbg-consulting.de
+                    </a>
                   </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-primary/[0.03] rounded-xl p-6 border border-primary/10">
+              <h3 className="font-semibold text-foreground mb-4 text-sm">Warum GBG Consulting?</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <p className="text-sm text-muted-foreground">Antwort innerhalb von <strong className="text-foreground">24 Stunden</strong></p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <UserCheck className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <p className="text-sm text-muted-foreground"><strong className="text-foreground">Feste Ansprechpartner</strong> – kein Callcenter</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Star className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <p className="text-sm text-muted-foreground"><strong className="text-foreground">Kostenlose Erstberatung</strong> ohne Verpflichtung</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <p className="text-sm text-muted-foreground">Über <strong className="text-foreground">2.000 Mandanten</strong> vertrauen uns</p>
                 </li>
               </ul>
             </div>
