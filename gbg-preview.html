@@ -384,6 +384,160 @@ footer { background: var(--primary); color: rgba(255,255,255,0.7); }
 .footer-links a:hover { color: rgba(255,255,255,0.8); }
 
 svg { display: inline-block; vertical-align: middle; }
+
+/* ── HERO STATS STRIP ── */
+.hero-stats { display: flex; align-items: center; gap: 0; margin-bottom: 2rem; padding: 1.25rem 1.5rem; background: var(--card); border-radius: 0.75rem; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.hero-stat { flex: 1; text-align: center; }
+.hero-stat-num { font-size: 1.75rem; font-weight: 700; color: var(--primary); display: block; line-height: 1.1; }
+.hero-stat-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; display: block; }
+.hero-stat-divider { width: 1px; height: 2.5rem; background: var(--border); flex-shrink: 0; }
+
+/* ── ARTICLES TEASER ── */
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.article-card {
+  background: var(--card); border-radius: 0.75rem; border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04); overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow .4s, transform .4s, border-color .3s;
+}
+.article-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-6px); border-color: rgba(26,43,74,0.15); }
+.article-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.article-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 500; margin-bottom: 0.75rem; width: fit-content; }
+.article-badge.blue { background: rgba(59,130,246,0.1); color: #1d4ed8; border: 1px solid rgba(59,130,246,0.2); }
+.article-badge.amber { background: rgba(245,158,11,0.1); color: #92400e; border: 1px solid rgba(245,158,11,0.2); }
+.article-badge.slate { background: rgba(100,116,139,0.1); color: #334155; border: 1px solid rgba(100,116,139,0.2); }
+.article-title { font-weight: 600; font-size: 1rem; color: var(--foreground); line-height: 1.4; margin-bottom: 0.75rem; transition: color .3s; }
+.article-card:hover .article-title { color: var(--primary); }
+.article-excerpt { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+.article-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
+.article-meta { font-size: 0.7rem; color: var(--muted); }
+.article-meta span { display: block; }
+.article-arrow { color: var(--muted); transition: color .3s, transform .3s; }
+.article-card:hover .article-arrow { color: var(--primary); transform: translateX(4px); }
+.articles-cta { text-align: center; margin-top: 3rem; }
+
+/* ── CONTACT WHY CARD ── */
+.contact-left-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-why-card {
+  background: rgba(26,43,74,0.04); border-radius: 0.75rem; padding: 1.5rem;
+  border: 1px solid rgba(201,168,76,0.25);
+}
+.contact-why-card h3 { font-weight: 600; margin-bottom: 1rem; font-size: 0.95rem; }
+.contact-why-item { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.75rem; font-size: 0.8rem; color: var(--foreground); }
+.contact-why-item:last-child { margin-bottom: 0; }
+.contact-why-icon { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+/* ── FLOATING UI ── */
+.back-to-top {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary); color: #fff; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(26,43,74,0.35);
+  transition: opacity .3s, transform .3s;
+  opacity: 1;
+}
+.back-to-top:hover { opacity: .85; transform: translateY(-3px); }
+.back-to-top svg { width: 20px; height: 20px; }
+
+@keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+  padding: 0 1rem 1rem;
+  animation: slideUp .5s ease forwards;
+}
+.cookie-inner {
+  background: var(--card); border-radius: 1rem 1rem 0 0; padding: 1.5rem 2rem;
+  border: 1px solid var(--border); border-bottom: none;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.1);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  max-width: 1280px; margin: 0 auto;
+}
+.cookie-text { flex: 1; min-width: 280px; }
+.cookie-icon-wrap { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.cookie-icon-wrap svg { width: 22px; height: 22px; color: var(--accent); }
+.cookie-icon-wrap h4 { font-weight: 600; font-size: 0.95rem; }
+.cookie-inner p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.cookie-btns { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; flex-shrink: 0; }
+.cookie-btn-accept { background: var(--primary); color: #fff; padding: 0.6rem 1.25rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; border: none; cursor: pointer; transition: opacity .2s; }
+.cookie-btn-accept:hover { opacity: .88; }
+.cookie-btn-decline { background: transparent; color: var(--foreground); padding: 0.6rem 1.25rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 500; border: 1px solid var(--border); cursor: pointer; transition: background .2s; }
+.cookie-btn-decline:hover { background: var(--secondary-bg); }
+.cookie-btn-settings { background: transparent; color: var(--muted); padding: 0.6rem 1rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 400; border: none; cursor: pointer; text-decoration: underline; transition: color .2s; }
+.cookie-btn-settings:hover { color: var(--foreground); }
+
+/* ── UNTERSEITEN DIVIDER ── */
+.unterseiten-divider {
+  background: var(--primary); color: #fff; text-align: center; padding: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.unterseiten-divider::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 0, transparent 80px);
+}
+.unterseiten-divider h2 { font-size: 1.1rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,0.7); position: relative; z-index: 1; }
+.unterseiten-divider::after { content: ''; display: block; width: 3rem; height: 3px; background: var(--accent); margin: 0.75rem auto 0; }
+.page-divider { border: none; border-top: 3px solid var(--accent); margin: 0; opacity: 0.35; }
+
+/* ── SUB-PAGES ── */
+.subpage-nav { position: relative; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); box-shadow: 0 1px 8px rgba(0,0,0,0.05); }
+.subpage-hero {
+  background: linear-gradient(135deg, rgba(26,43,74,0.06) 0%, var(--bg) 60%);
+  padding: 5rem 0 4rem; text-align: center;
+}
+.subpage-hero-icon { width: 3.5rem; height: 3.5rem; border-radius: 0.75rem; background: var(--primary-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+.subpage-hero-icon svg { width: 2rem; height: 2rem; color: var(--primary); }
+.subpage-hero-label { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: 0.75rem; }
+.subpage-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.75rem; font-weight: 700; color: var(--foreground); margin-bottom: 1rem; }
+.subpage-hero p { font-size: 1.0625rem; color: var(--muted); max-width: 540px; margin: 0 auto; line-height: 1.65; }
+
+/* Blog filter */
+.filter-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-pill { padding: 0.4rem 1rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 500; cursor: pointer; border: 1px solid var(--border); transition: background .2s, color .2s, border-color .2s; }
+.filter-pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.filter-pill:not(.active) { background: var(--card); color: var(--muted); }
+.filter-pill:not(.active):hover { background: var(--secondary-bg); color: var(--foreground); }
+.filter-search { margin-left: auto; padding: 0.4rem 1rem; border-radius: 9999px; border: 1px solid var(--border); font-size: 0.8rem; outline: none; font-family: 'Inter', sans-serif; transition: border-color .2s; }
+.filter-search:focus { border-color: var(--primary); }
+.articles-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+/* Rechengroessen tables */
+.rg-section { padding: 3rem 0 5rem; }
+.rg-table-card { background: var(--card); border-radius: 1rem; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 2rem; }
+.rg-table-header { padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem; background: rgba(26,43,74,0.02); }
+.rg-table-icon { width: 2.25rem; height: 2.25rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; }
+.rg-table-icon.navy { background: var(--primary-light); }
+.rg-table-icon.navy svg { color: var(--primary); }
+.rg-table-icon.gold { background: var(--accent-light); }
+.rg-table-icon.gold svg { color: var(--accent); }
+.rg-table-icon svg { width: 1.25rem; height: 1.25rem; }
+.rg-table-header h3 { font-weight: 600; font-size: 0.975rem; }
+.rg-table-header p { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+.rg-table { width: 100%; border-collapse: collapse; }
+.rg-table thead tr { border-bottom: 1px solid var(--border); background: rgba(243,245,248,0.6); }
+.rg-table th { text-align: left; padding: 0.875rem 2rem; font-size: 0.78rem; font-weight: 600; color: var(--foreground); text-transform: uppercase; letter-spacing: .04em; }
+.rg-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.04); transition: background .2s; }
+.rg-table tbody tr:last-child { border-bottom: none; }
+.rg-table tbody tr:hover { background: rgba(26,43,74,0.02); }
+.rg-table td { padding: 0.875rem 2rem; font-size: 0.875rem; }
+.rg-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--primary); }
+.rg-disclaimer { font-size: 0.78rem; color: var(--muted); line-height: 1.65; padding: 1rem 1.25rem; background: var(--secondary-bg); border-radius: 0.5rem; border: 1px solid var(--border); margin-top: 1.5rem; }
+
+/* Stellenangebote empty state */
+.careers-empty { text-align: center; padding: 5rem 0; }
+.careers-empty-icon { width: 5rem; height: 5rem; border-radius: 50%; background: var(--secondary-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+.careers-empty-icon svg { width: 2.5rem; height: 2.5rem; color: var(--muted); }
+.careers-empty h2 { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.75rem; }
+.careers-empty p { font-size: 0.975rem; color: var(--muted); max-width: 440px; margin: 0 auto 2rem; line-height: 1.65; }
+
+@media (max-width: 900px) {
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .services-grid, .testimonials-grid, .team-grid { grid-template-columns: 1fr; }
+  .articles-grid, .articles-grid-2 { grid-template-columns: 1fr; }
+  nav .nav-links { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
@@ -441,6 +595,23 @@ svg { display: inline-block; vertical-align: middle; }
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
             Kostenlose Erstberatung
           </a>
+        </div>
+        <!-- STATS STRIP -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">2.000+</span>
+            <span class="hero-stat-lbl">Mandanten</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">25+</span>
+            <span class="hero-stat-lbl">Jahre Erfahrung</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">100%</span>
+            <span class="hero-stat-lbl">Unabhängig</span>
+          </div>
         </div>
         <div class="hero-certs">
           <span class="hero-certs-label">Mitglied in:</span>
@@ -660,6 +831,70 @@ svg { display: inline-block; vertical-align: middle; }
           <p class="testimonial-company">Süddeutschland</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ ARTICLES TEASER ══ -->
+<section class="section" style="background: rgba(243,245,248,0.3);" id="fachartikel">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Fachwissen &amp; Aktuelles</span>
+      <h2 class="section-title serif">Aktuelle Fachartikel</h2>
+      <p class="section-desc">Fundiertes Wissen rund um bAV, BilMoG, Pensionszusagen und Rechtsentwicklungen – aufbereitet von unseren Experten.</p>
+    </div>
+    <div class="articles-grid">
+      <!-- Article 1 -->
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge blue">BilMoG</span>
+          <h3 class="article-title">BilMoG-Rechnungszins 2026: Entwicklung und Prognose</h3>
+          <p class="article-excerpt">Der HGB-Rechnungszins beeinflusst maßgeblich die Höhe der Pensionsrückstellungen in der Handelsbilanz. Wir analysieren die aktuelle Entwicklung und geben eine fundierte Prognose für das Jahresende 2026.</p>
+          <div class="article-footer">
+            <div class="article-meta">
+              <span>GBG Redaktion</span>
+              <span>15. Apr. 2026</span>
+            </div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+      <!-- Article 2 -->
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge amber">Pensionsgutachten</span>
+          <h3 class="article-title">Pensionszusagen richtig bewerten: HGB vs. IFRS im Vergleich</h3>
+          <p class="article-excerpt">Die Bewertung von Pensionsverpflichtungen nach HGB und IFRS folgt unterschiedlichen Prinzipien. Dieser Artikel erläutert die wesentlichen Unterschiede und ihre Auswirkungen auf Ihren Jahresabschluss.</p>
+          <div class="article-footer">
+            <div class="article-meta">
+              <span>GBG Redaktion</span>
+              <span>02. März 2026</span>
+            </div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+      <!-- Article 3 -->
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge slate">Aktuelles</span>
+          <h3 class="article-title">Neue Urteile zur GGF-Versorgung: Was Unternehmen jetzt beachten müssen</h3>
+          <p class="article-excerpt">Aktuelle Urteile des Bundesfinanzhofs und der Finanzgerichte verändern die steuerliche Behandlung von Gesellschafter-Geschäftsführer-Versorgungen. Ein Überblick über die wichtigsten Konsequenzen.</p>
+          <div class="article-footer">
+            <div class="article-meta">
+              <span>GBG Redaktion</span>
+              <span>18. Jan. 2026</span>
+            </div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="articles-cta">
+      <a href="#" class="btn-outline-sm">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Alle Fachartikel ansehen
+      </a>
     </div>
   </div>
 </section>
@@ -911,35 +1146,58 @@ svg { display: inline-block; vertical-align: middle; }
       <p class="section-desc">Senden Sie uns Ihre Anfrage – wir erstellen Ihnen gerne ein individuelles Angebot.</p>
     </div>
     <div class="contact-grid">
-      <!-- Info -->
-      <div class="contact-info-card">
-        <h3>Kontaktdaten</h3>
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </span>
-          <div>
-            <div class="contact-label">Standorte</div>
-            <div class="contact-val">Hamburg</div>
-            <div class="contact-val">Köln</div>
+      <!-- Info left column: 2 stacked cards -->
+      <div class="contact-left-stack">
+        <!-- Card 1: Kontaktdaten -->
+        <div class="contact-info-card">
+          <h3>Kontaktdaten</h3>
+          <div class="contact-item">
+            <span class="contact-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <div class="contact-label">Standorte</div>
+              <div class="contact-val">Hamburg</div>
+              <div class="contact-val">Köln</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </span>
+            <div>
+              <div class="contact-label">Telefon</div>
+              <a href="tel:+4940000000" class="contact-val" style="text-decoration:none;color:inherit;">+49 (0) 40 / 000 000</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <div>
+              <div class="contact-label">E-Mail</div>
+              <a href="mailto:info@gbg-consulting.de" class="contact-val" style="text-decoration:none;color:inherit;">info@gbg-consulting.de</a>
+            </div>
           </div>
         </div>
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          </span>
-          <div>
-            <div class="contact-label">Telefon</div>
-            <div class="contact-val">+49 (0) 40 / 000 000</div>
+        <!-- Card 2: Warum GBG? -->
+        <div class="contact-why-card">
+          <h3>Warum GBG Consulting?</h3>
+          <div class="contact-why-item">
+            <svg class="contact-why-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Antwort innerhalb von 24 Stunden</span>
           </div>
-        </div>
-        <div class="contact-item">
-          <span class="contact-icon">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </span>
-          <div>
-            <div class="contact-label">E-Mail</div>
-            <div class="contact-val">info@gbg-consulting.de</div>
+          <div class="contact-why-item">
+            <svg class="contact-why-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="23 11 17 17 14 14"/></svg>
+            <span>Feste Ansprechpartner – kein Callcenter</span>
+          </div>
+          <div class="contact-why-item">
+            <svg class="contact-why-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Kostenlose Erstberatung ohne Verpflichtung</span>
+          </div>
+          <div class="contact-why-item">
+            <svg class="contact-why-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Über 2.000 Mandanten vertrauen uns</span>
           </div>
         </div>
       </div>
@@ -1031,6 +1289,367 @@ svg { display: inline-block; vertical-align: middle; }
         <a href="#">AGB</a>
         <a href="#">Cookie-Einstellungen</a>
       </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════ BACK TO TOP ══ -->
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Nach oben">
+  <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ══════════════════════════════════════════════════════ COOKIE BANNER ══ -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <div class="cookie-icon-wrap">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2z"/><path d="M12 8v4"/><circle cx="8.5" cy="14.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="9.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/></svg>
+        <h4>Cookie-Einstellungen</h4>
+      </div>
+      <p>Wir verwenden Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. Dazu gehören essentielle Cookies sowie optionale Analyse- und Marketing-Cookies. Weitere Informationen finden Sie in unserer <a href="#" style="color:var(--primary)">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="cookie-btns">
+      <button class="cookie-btn-accept" onclick="document.getElementById('cookieBanner').style.display='none'">Alle akzeptieren</button>
+      <button class="cookie-btn-decline" onclick="document.getElementById('cookieBanner').style.display='none'">Ablehnen</button>
+      <button class="cookie-btn-settings">Einstellungen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════════
+     UNTERSEITEN-VORSCHAU
+     ══════════════════════════════════════════════════════════════════════════════ -->
+
+<div class="unterseiten-divider">
+  <h2>↓ UNTERSEITEN-VORSCHAU ↓</h2>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     SUB-PAGE A: BLOG / FACHARTIKEL
+     ════════════════════════════════════════════════ -->
+
+<!-- Blog Nav -->
+<nav class="subpage-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo"><span class="logo-text">GBG</span><span class="logo-sub">Consulting für bAV</span></a>
+      <div class="nav-links">
+        <a href="#">Dienstleistungen</a>
+        <a href="#">BilMoG Zins</a>
+        <a href="#">Über uns</a>
+        <a href="#">Kontakt</a>
+        <a href="#" style="color:var(--primary);border-bottom:2px solid var(--accent);padding-bottom:2px">Fachartikel</a>
+        <a href="#">Karriere</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-cta">Angebotsanfrage</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Blog Hero -->
+<div class="subpage-hero" style="padding-top:6rem">
+  <div class="container">
+    <div class="subpage-hero-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    </div>
+    <p class="subpage-hero-label">Fachwissen &amp; Aktuelles</p>
+    <h1>Fachartikel &amp; Blog</h1>
+    <p>Aktuelle Beiträge zu BilMoG, Pensionsgutachten, betrieblicher Altersversorgung, Recht und Steuern – von unseren Experten verfasst.</p>
+  </div>
+</div>
+
+<!-- Blog Content -->
+<div class="section" style="padding-top:2.5rem">
+  <div class="container">
+    <!-- Filter row -->
+    <div class="filter-row">
+      <span class="filter-pill active">Alle Beiträge</span>
+      <span class="filter-pill">BilMoG</span>
+      <span class="filter-pill">Pensionsgutachten</span>
+      <span class="filter-pill">Betriebliche AV</span>
+      <span class="filter-pill">Recht &amp; Urteile</span>
+      <span class="filter-pill">Aktuelles</span>
+      <input class="filter-search" type="search" placeholder="Artikel suchen …" />
+    </div>
+    <!-- 2-column article grid -->
+    <div class="articles-grid-2">
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge blue">BilMoG</span>
+          <h3 class="article-title">BilMoG-Rechnungszins 2026: Entwicklung und Prognose</h3>
+          <p class="article-excerpt">Der HGB-Rechnungszins beeinflusst maßgeblich die Höhe der Pensionsrückstellungen in der Handelsbilanz. Wir analysieren die aktuelle Entwicklung und geben eine fundierte Prognose für das Jahresende 2026.</p>
+          <div class="article-footer">
+            <div class="article-meta"><span>GBG Redaktion</span><span>15. Apr. 2026</span></div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge amber">Pensionsgutachten</span>
+          <h3 class="article-title">Pensionszusagen richtig bewerten: HGB vs. IFRS im Vergleich</h3>
+          <p class="article-excerpt">Die Bewertung von Pensionsverpflichtungen nach HGB und IFRS folgt unterschiedlichen Prinzipien. Dieser Artikel erläutert die wesentlichen Unterschiede und ihre Auswirkungen auf den Jahresabschluss.</p>
+          <div class="article-footer">
+            <div class="article-meta"><span>GBG Redaktion</span><span>02. März 2026</span></div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge slate">Aktuelles</span>
+          <h3 class="article-title">Neue Urteile zur GGF-Versorgung: Was Unternehmen jetzt beachten müssen</h3>
+          <p class="article-excerpt">Aktuelle Urteile des Bundesfinanzhofs und der Finanzgerichte verändern die steuerliche Behandlung von GGF-Versorgungen. Ein Überblick über die wichtigsten Konsequenzen für Gesellschafter-Geschäftsführer.</p>
+          <div class="article-footer">
+            <div class="article-meta"><span>GBG Redaktion</span><span>18. Jan. 2026</span></div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="article-card">
+        <div class="article-card-body">
+          <span class="article-badge blue">BilMoG</span>
+          <h3 class="article-title">Auswirkungen steigender Zinsen auf Pensionsrückstellungen</h3>
+          <p class="article-excerpt">Steigende Zinsen führen zu sinkenden Pensionsrückstellungen in der Handelsbilanz und entlasten so das Eigenkapital. Wir erklären den Mechanismus und zeigen, was Unternehmen jetzt beachten sollten.</p>
+          <div class="article-footer">
+            <div class="article-meta"><span>GBG Redaktion</span><span>10. Dez. 2025</span></div>
+            <svg class="article-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Blog Footer -->
+<footer style="background:var(--primary);color:rgba(255,255,255,0.7);">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GBG</div>
+        <p class="footer-desc">Consulting für betriebliche Altersversorgung GmbH</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul><li><a href="#">Versicherungsmathematische Gutachten</a></li><li><a href="#">Pensionsgutachten</a></li><li><a href="#">GGF-Versorgung</a></li><li><a href="#">Versorgungsausgleich</a></li><li><a href="#">U-Kassen Betreuung</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul><li><a href="#">Über uns</a></li><li><a href="#">Fachartikel</a></li><li><a href="#">Rechengrößen</a></li><li><a href="#">Karriere</a></li></ul>
+      </div>
+      <div>
+        <h4 style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.6);margin-bottom:1rem;font-weight:600">Kontakt</h4>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><a href="tel:+4940000000">+49 (0) 40 / 000 000</a></div>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@gbg-consulting.de">info@gbg-consulting.de</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GBG Consulting für betriebliche Altersversorgung GmbH. Alle Rechte vorbehalten.</p>
+      <div class="footer-links"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
+    </div>
+  </div>
+</footer>
+
+<hr class="page-divider" />
+
+<!-- ════════════════════════════════════════════════
+     SUB-PAGE B: RECHENGROSSEN
+     ════════════════════════════════════════════════ -->
+
+<!-- Rechengrößen Nav -->
+<nav class="subpage-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo"><span class="logo-text">GBG</span><span class="logo-sub">Consulting für bAV</span></a>
+      <div class="nav-links">
+        <a href="#">Dienstleistungen</a>
+        <a href="#">BilMoG Zins</a>
+        <a href="#">Über uns</a>
+        <a href="#">Kontakt</a>
+        <a href="#">Fachartikel</a>
+        <a href="#">Karriere</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-cta">Angebotsanfrage</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Rechengrößen Hero -->
+<div class="subpage-hero" style="padding-top:6rem">
+  <div class="container">
+    <div class="subpage-hero-icon">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+    </div>
+    <p class="subpage-hero-label">Informationen</p>
+    <h1>Rechengrößen 2026</h1>
+    <p>Aktuelle Sozialversicherungsrechengrößen und steuerliche Werte für die betriebliche Altersversorgung im Jahr 2026.</p>
+  </div>
+</div>
+
+<!-- Rechengrößen Tables -->
+<div class="rg-section">
+  <div class="container" style="max-width:860px">
+    <!-- Table 1 -->
+    <div class="rg-table-card">
+      <div class="rg-table-header">
+        <div class="rg-table-icon navy">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        </div>
+        <div>
+          <h3>Sozialversicherungsrechengrößen 2026</h3>
+          <p>Beitragsbemessungsgrenzen und Bezugsgrößen (jährlich / monatlich)</p>
+        </div>
+      </div>
+      <table class="rg-table">
+        <thead><tr><th>Bezeichnung</th><th style="text-align:right">West</th><th style="text-align:right">Ost</th></tr></thead>
+        <tbody>
+          <tr><td>BBG Rentenversicherung (jährlich)</td><td style="text-align:right">96.600 €</td><td style="text-align:right">96.600 €</td></tr>
+          <tr><td>BBG Rentenversicherung (monatlich)</td><td style="text-align:right">8.050 €</td><td style="text-align:right">8.050 €</td></tr>
+          <tr><td>BBG Krankenversicherung (jährlich)</td><td style="text-align:right">66.150 €</td><td style="text-align:right">66.150 €</td></tr>
+          <tr><td>BBG Krankenversicherung (monatlich)</td><td style="text-align:right">5.512,50 €</td><td style="text-align:right">5.512,50 €</td></tr>
+          <tr><td>Bezugsgröße RV/AV (jährlich)</td><td style="text-align:right">42.000 €</td><td style="text-align:right">42.000 €</td></tr>
+          <tr><td>Bezugsgröße RV/AV (monatlich)</td><td style="text-align:right">3.500 €</td><td style="text-align:right">3.500 €</td></tr>
+          <tr><td>Durchschnittsentgelt RV (vorläufig)</td><td style="text-align:right">45.358 €</td><td style="text-align:right">–</td></tr>
+          <tr><td>Jahresarbeitsentgeltgrenze KV (allgemein)</td><td style="text-align:right">73.800 €</td><td style="text-align:right">73.800 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Table 2 -->
+    <div class="rg-table-card">
+      <div class="rg-table-header">
+        <div class="rg-table-icon gold">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        </div>
+        <div>
+          <h3>Steuerliche Werte für die bAV 2026</h3>
+          <p>Steuerlich relevante Höchstbeträge und Freibeträge nach EStG</p>
+        </div>
+      </div>
+      <table class="rg-table">
+        <thead><tr><th>Bezeichnung</th><th style="text-align:right">Wert 2026</th><th style="text-align:right">Grundlage</th></tr></thead>
+        <tbody>
+          <tr><td>Höchstbetrag § 3 Nr. 63 EStG (4 % der BBG RV West)</td><td style="text-align:right">3.864 €</td><td style="text-align:right">§ 3 Nr. 63 EStG</td></tr>
+          <tr><td>Steuerfrei zus. Betrag (§ 3 Nr. 63 Satz 3 EStG)</td><td style="text-align:right">1.800 €</td><td style="text-align:right">§ 3 Nr. 63 S. 3 EStG</td></tr>
+          <tr><td>Höchstbetrag Direktversicherung § 40b EStG (alt)</td><td style="text-align:right">1.752 €</td><td style="text-align:right">§ 40b EStG a.F.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rg-disclaimer">
+      <strong>Hinweis:</strong> Die dargestellten Rechengrößen entsprechen dem Stand 2026 und wurden mit Sorgfalt zusammengestellt. Für steuer- und sozialversicherungsrechtliche Entscheidungen empfehlen wir, aktuelle Quellen (Bundesgesetzblatt, BMAS) zu prüfen. GBG Consulting übernimmt keine Haftung für etwaige Abweichungen.
+    </p>
+  </div>
+</div>
+
+<!-- Rechengrößen Footer -->
+<footer style="background:var(--primary);color:rgba(255,255,255,0.7);">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GBG</div>
+        <p class="footer-desc">Consulting für betriebliche Altersversorgung GmbH</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul><li><a href="#">Versicherungsmathematische Gutachten</a></li><li><a href="#">Pensionsgutachten</a></li><li><a href="#">GGF-Versorgung</a></li><li><a href="#">Versorgungsausgleich</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul><li><a href="#">Über uns</a></li><li><a href="#">Fachartikel</a></li><li><a href="#">Rechengrößen</a></li><li><a href="#">Karriere</a></li></ul>
+      </div>
+      <div>
+        <h4 style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.6);margin-bottom:1rem;font-weight:600">Kontakt</h4>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><a href="tel:+4940000000">+49 (0) 40 / 000 000</a></div>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@gbg-consulting.de">info@gbg-consulting.de</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GBG Consulting für betriebliche Altersversorgung GmbH. Alle Rechte vorbehalten.</p>
+      <div class="footer-links"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
+    </div>
+  </div>
+</footer>
+
+<hr class="page-divider" />
+
+<!-- ════════════════════════════════════════════════
+     SUB-PAGE C: STELLENANGEBOTE
+     ════════════════════════════════════════════════ -->
+
+<!-- Karriere Nav -->
+<nav class="subpage-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo"><span class="logo-text">GBG</span><span class="logo-sub">Consulting für bAV</span></a>
+      <div class="nav-links">
+        <a href="#">Dienstleistungen</a>
+        <a href="#">BilMoG Zins</a>
+        <a href="#">Über uns</a>
+        <a href="#">Kontakt</a>
+        <a href="#">Fachartikel</a>
+        <a href="#" style="color:var(--primary);border-bottom:2px solid var(--accent);padding-bottom:2px">Karriere</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-cta">Angebotsanfrage</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Karriere Hero -->
+<div class="subpage-hero" style="padding-top:6rem">
+  <div class="container">
+    <p class="subpage-hero-label">Karriere</p>
+    <h1>Aktuelle Stellenangebote</h1>
+    <p>Werden Sie Teil unseres Teams. Bei GBG Consulting erwartet Sie eine abwechslungsreiche Tätigkeit in einem wachsenden Unternehmen mit flachen Hierarchien.</p>
+  </div>
+</div>
+
+<!-- Karriere Empty State -->
+<div class="section" style="padding-top:1rem">
+  <div class="container">
+    <div class="careers-empty">
+      <div class="careers-empty-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      </div>
+      <h2>Derzeit keine offenen Stellen</h2>
+      <p>Aktuell haben wir keine offenen Stellen ausgeschrieben. Wir freuen uns jedoch jederzeit über Initiativbewerbungen qualifizierter Fachkräfte aus dem Bereich Aktuarwesen und betriebliche Altersversorgung.</p>
+      <a href="#" class="btn-primary" style="display:inline-flex;margin:0 auto">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Initiativbewerbung senden
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Karriere Footer -->
+<footer style="background:var(--primary);color:rgba(255,255,255,0.7);">
+  <div class="container footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GBG</div>
+        <p class="footer-desc">Consulting für betriebliche Altersversorgung GmbH</p>
+      </div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul><li><a href="#">Versicherungsmathematische Gutachten</a></li><li><a href="#">Pensionsgutachten</a></li><li><a href="#">GGF-Versorgung</a></li><li><a href="#">Versorgungsausgleich</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul><li><a href="#">Über uns</a></li><li><a href="#">Fachartikel</a></li><li><a href="#">Rechengrößen</a></li><li><a href="#">Karriere</a></li></ul>
+      </div>
+      <div>
+        <h4 style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.6);margin-bottom:1rem;font-weight:600">Kontakt</h4>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><a href="tel:+4940000000">+49 (0) 40 / 000 000</a></div>
+        <div class="footer-contact-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@gbg-consulting.de">info@gbg-consulting.de</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GBG Consulting für betriebliche Altersversorgung GmbH. Alle Rechte vorbehalten.</p>
+      <div class="footer-links"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
     </div>
   </div>
 </footer>
