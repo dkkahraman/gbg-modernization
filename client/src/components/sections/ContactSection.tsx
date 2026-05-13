@@ -124,7 +124,7 @@ export default function ContactSection() {
                   <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Telefon</p>
-                    <p className="text-sm text-muted-foreground">+49 (0) 69 / 000 000</p>
+                    <p className="text-sm text-muted-foreground">+49 (0) 40 / 000 000</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3 group">
@@ -209,7 +209,7 @@ export default function ContactSection() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary transition-all duration-300 hover:border-primary/40"
-                    placeholder="+49 69 123456"
+                    placeholder="+49 40 123456"
                   />
                 </div>
               </div>
