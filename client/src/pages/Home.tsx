@@ -6,6 +6,7 @@ import BilMoGSection from "@/components/sections/BilMoGSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import AboutSection from "@/components/sections/AboutSection";
 import TeamSection from "@/components/sections/TeamSection";
+import ArticlesTeaserSection from "@/components/sections/ArticlesTeaserSection";
 import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import { useSEO } from "@/hooks/useSEO";
@@ -38,6 +39,7 @@ export default function Home() {
         <AboutSection />
         <TeamSection />
         <TestimonialsSection />
+        <ArticlesTeaserSection />
         <FAQSection />
         <ContactSection />
       </main>
