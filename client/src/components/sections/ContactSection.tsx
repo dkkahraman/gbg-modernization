@@ -124,8 +124,11 @@ export default function ContactSection() {
                   <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Telefon</p>
-                    <a href="tel:+4940000000" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      +49 (0) 40 / 000 000
+                    <a href="tel:+49403257800" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      +49 (0) 40 / 325 780-0
+                    </a>
+                    <a href="tel:+492213409150" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      +49 (0) 221 / 340 915-0
                     </a>
                   </div>
                 </li>

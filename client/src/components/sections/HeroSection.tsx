@@ -38,7 +38,7 @@ export default function HeroSection() {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span className="text-xs font-medium text-white/90">
-                Seit über 25 Jahren Ihr Partner
+                Seit über 30 Jahren Ihr Partner
               </span>
             </div>
 
@@ -74,7 +74,7 @@ export default function HeroSection() {
               </div>
               <div className="w-px h-10 bg-white/20" />
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">25+</div>
+                <div className="text-2xl font-bold text-white">30+</div>
                 <div className="text-xs text-white/50 mt-0.5">Jahre Erfahrung</div>
               </div>
               <div className="w-px h-10 bg-white/20" />
@@ -116,7 +116,7 @@ export default function HeroSection() {
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/15 hover:bg-white/15 hover:-translate-y-1 transition-all duration-500">
                 <Award className="w-8 h-8 text-accent mb-3" />
                 <h3 className="font-semibold text-white mb-1">Erfahrung</h3>
-                <p className="text-sm text-white/60">Über 25 Jahre Kompetenz in der bAV-Beratung</p>
+                <p className="text-sm text-white/60">Über 30 Jahre Kompetenz in der bAV-Beratung</p>
               </div>
             </div>
             <div style={getParallaxStyle(-0.12, 60)}>

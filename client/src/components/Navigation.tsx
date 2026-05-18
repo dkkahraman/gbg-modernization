@@ -95,7 +95,7 @@ export default function Navigation() {
 
           {/* CTA + Contact */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+4969000000" className="text-muted-foreground hover:text-primary transition-colors">
+            <a href="tel:+49403257800" className="text-muted-foreground hover:text-primary transition-colors">
               <Phone className="w-4 h-4" />
             </a>
             <a href="mailto:info@gbg-consulting.de" className="text-muted-foreground hover:text-primary transition-colors">
