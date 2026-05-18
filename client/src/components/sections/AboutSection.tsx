@@ -1,133 +1,94 @@
-import { CheckCircle2, Target, Handshake, GraduationCap } from "lucide-react";
 import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
-const values = [
-  {
-    icon: Target,
-    title: "Präzision",
-    description: "Exakte versicherungsmathematische Berechnungen nach höchsten Standards.",
-  },
-  {
-    icon: Handshake,
-    title: "Partnerschaft",
-    description: "Langfristige, vertrauensvolle Zusammenarbeit mit unseren Mandanten.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Kompetenz",
-    description: "Hochqualifizierte Aktuare und Berater mit jahrzehntelanger Erfahrung.",
-  },
-];
-
 const facts = [
-  "Über 25 Jahre Erfahrung in der bAV-Beratung",
-  "Über 2.000 zufriedene Mandanten aus Industrie und Mittelstand",
-  "Zertifizierte Aktuare (DAV / IVS)",
-  "Unabhängige und neutrale Beratung",
-  "Individuelle Lösungen für jede Unternehmensgröße",
+  { value: "30+", label: "Jahre Erfahrung", detail: "Seit 1994 im Markt" },
+  { value: "2.000+", label: "Mandanten", detail: "Industrie & Mittelstand" },
+  { value: "100%", label: "Unabhängig", detail: "Keine Produktbindung" },
 ];
 
 export default function AboutSection() {
   const { ref: leftRef, isVisible: leftVisible } = useScrollAnimation();
-  const { containerRef: valuesRef, getItemStyle: getValueStyle } = useStaggeredAnimation(values.length);
-  const { containerRef: statsRef, getItemStyle: getStatStyle } = useStaggeredAnimation(3, { threshold: 0.3 });
+  const { containerRef: factsRef, getItemStyle: getFactStyle } = useStaggeredAnimation(facts.length, { threshold: 0.3 });
 
   return (
-    <section id="ueber-uns" className="py-20 md:py-28 bg-background">
-      <div className="container">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text Content */}
+    <section id="ueber-uns" className="relative overflow-hidden">
+      {/* Split background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#0a1628]" />
+        <div className="absolute top-0 left-0 w-[55%] h-full bg-[#0f1f38] hidden lg:block"
+          style={{ clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)" }}
+        />
+      </div>
+
+      <div className="container relative z-10 py-24 md:py-32">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
+          {/* Left: Statement */}
           <div
             ref={leftRef}
+            className="lg:col-span-7"
             style={{
               opacity: leftVisible ? 1 : 0,
               transform: leftVisible ? "translateX(0)" : "translateX(-30px)",
               transition: "opacity 0.8s ease, transform 0.8s ease",
             }}
           >
-            <span className="text-sm font-medium text-accent uppercase tracking-wider">
-              Über uns
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mt-3 mb-6">
-              Ihr Partner für betriebliche Altersversorgung
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-12 h-[2px] bg-[#d4a853]" />
+              <span className="text-sm font-medium tracking-wide text-white/40 uppercase">
+                Über GBG
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-8">
+              Unabhängig beraten.<br />
+              <span className="text-[#d4a853]">Präzise bewerten.</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              Die GBG Consulting für betriebliche Altersversorgung GmbH ist ein unabhängiges 
-              Beratungsunternehmen mit Standorten in Hamburg und Köln. Seit über 25 Jahren unterstützen
-              wir Unternehmen aller Größenordnungen bei der Gestaltung, Bewertung und Verwaltung 
-              ihrer betrieblichen Altersversorgung.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              Unser Team aus erfahrenen Aktuaren und Beratern verbindet tiefgreifendes 
-              Fachwissen mit praxisnaher Beratung. Wir stehen für Präzision, Zuverlässigkeit 
-              und individuelle Lösungen, die den spezifischen Anforderungen unserer Mandanten 
-              gerecht werden.
+
+            <p className="text-lg text-white/50 leading-relaxed mb-8 max-w-xl">
+              Die GBG Consulting ist ein unabhängiges Beratungsunternehmen mit Standorten 
+              in Hamburg und Köln. Wir unterstützen Unternehmen aller Größenordnungen bei 
+              der Gestaltung, Bewertung und Verwaltung ihrer betrieblichen Altersversorgung.
             </p>
 
-            {/* Facts */}
-            <ul className="space-y-3">
-              {facts.map((fact, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3"
-                  style={{
-                    opacity: leftVisible ? 1 : 0,
-                    transform: leftVisible ? "translateX(0)" : "translateX(-15px)",
-                    transition: `opacity 0.5s ease ${0.3 + index * 0.1}s, transform 0.5s ease ${0.3 + index * 0.1}s`,
-                  }}
-                >
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-sm text-foreground">{fact}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <p className="text-white/40 leading-relaxed mb-12 max-w-xl">
+              Unser Team aus erfahrenen Aktuaren verbindet tiefgreifendes Fachwissen mit 
+              praxisnaher Beratung. Wir stehen für Präzision, Zuverlässigkeit und individuelle 
+              Lösungen.
+            </p>
 
-          {/* Right: Values Cards */}
-          <div>
-            <div ref={valuesRef} className="space-y-6">
-              {values.map((value, index) => (
-                <div
-                  key={index}
-                  style={getValueStyle(index)}
-                  className="bg-card rounded-xl p-6 border border-border/50 
-                    hover:shadow-lg hover:-translate-x-2 hover:border-primary/20
-                    transition-all duration-500 ease-out group"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center shrink-0
-                      group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
-                      <value.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground text-lg mb-1 group-hover:text-primary transition-colors duration-300">
-                        {value.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {value.description}
-                      </p>
-                    </div>
-                  </div>
+            {/* Differentiators — horizontal */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10">
+              {[
+                { title: "Präzision", desc: "Exakte Berechnungen nach höchsten Standards" },
+                { title: "Partnerschaft", desc: "Langfristige, vertrauensvolle Zusammenarbeit" },
+                { title: "Kompetenz", desc: "Zertifizierte Aktuare (DAV/IVS)" },
+              ].map((item, i) => (
+                <div key={i} className="group">
+                  <h3 className="text-sm font-bold text-white mb-1 tracking-wide">{item.title}</h3>
+                  <p className="text-xs text-white/30 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Stats */}
-            <div ref={statsRef} className="grid grid-cols-3 gap-4 mt-8">
-              {[
-                { value: "25+", label: "Jahre Erfahrung" },
-                { value: "2.000+", label: "Mandanten" },
-                { value: "100%", label: "Unabhängig" },
-              ].map((stat, index) => (
+          {/* Right: Stats */}
+          <div className="lg:col-span-5">
+            <div ref={factsRef} className="space-y-6">
+              {facts.map((fact, index) => (
                 <div
                   key={index}
-                  style={getStatStyle(index)}
-                  className="text-center p-4 bg-secondary rounded-xl
-                    hover:bg-primary/5 hover:scale-105 hover:shadow-md
-                    transition-all duration-300 cursor-default"
+                  style={getFactStyle(index)}
+                  className="group p-8 bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm
+                    hover:bg-white/[0.06] hover:border-[#d4a853]/20
+                    transition-all duration-500"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                  <div className="flex items-baseline justify-between">
+                    <div>
+                      <div className="text-4xl md:text-5xl font-bold text-white tracking-tight">{fact.value}</div>
+                      <div className="text-sm text-white/50 mt-2 font-medium">{fact.label}</div>
+                    </div>
+                    <span className="text-xs text-white/20 uppercase tracking-wider">{fact.detail}</span>
+                  </div>
                 </div>
               ))}
             </div>
