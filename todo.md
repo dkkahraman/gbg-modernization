@@ -119,3 +119,7 @@
 - [x] Blog-Detailseite Redesign: Im neuen Split-Design-Stil
 - [x] Karriere-Seite Redesign: Im neuen Design-System
 - [x] Rechengrößen-Seite Redesign: Im neuen Design-System
+
+## Kontaktbereich Redesign
+
+- [x] ContactSection: Prominenter Ansprechpartner-Block mit Name, Foto-Placeholder, Telefon, E-Mail direkt sichtbar
