@@ -55,7 +55,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img
-              src="/logo.png"
+              src="/GBG Logo KO_Finalversion.jpg"
               alt="GBG Consulting für betriebliche Altersversorgung GmbH"
               className="h-12 w-auto"
               onError={(e) => {
