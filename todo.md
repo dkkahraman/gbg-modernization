@@ -112,3 +112,10 @@
 - [x] BilMoG-Sektion Redesign: Von zentriertem Layout zu linksausgerichtetem Header im neuen Stil
 - [x] FAQ-Sektion Redesign: Von zentriertem Layout zu asymmetrischem Design mit neuem Stil
 - [x] Fachartikel-Teaser-Sektion Redesign: Von rounded Cards zu neuem Design-System
+
+## Unterseiten & Navigation Redesign
+
+- [x] Navigation Redesign: Transparenter Hintergrund, Gold-Hover-Effekte, neues Design-System
+- [x] Blog-Detailseite Redesign: Im neuen Split-Design-Stil
+- [x] Karriere-Seite Redesign: Im neuen Design-System
+- [x] Rechengrößen-Seite Redesign: Im neuen Design-System
