@@ -13,8 +13,8 @@ export default function HeroSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const latestPublished = bilmogData.filter((r: BilmogEntry) => !r.isPrognose).at(-1);
-  const bilmogDisplay = latestPublished ?? { period: "GBG-Prognose 12.2026", sevenYear: "2,64 %", tenYear: "2,30 %" };
+  const prognose = bilmogData.filter((r: BilmogEntry) => r.isPrognose).at(-1);
+  const bilmogDisplay = prognose ?? { period: "GBG-Prognose 12.2026", sevenYear: "2,64 %", tenYear: "2,30 %" };
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -99,7 +99,7 @@ export default function HeroSection() {
               style={{ transform: `translateY(${scrollY * -0.03}px)` }}
             >
               <div className="flex items-center justify-between mb-6">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#0a1628]/40">BilMoG-Zinsen</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#0a1628]/40">GBG-Prognose</span>
                 <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 bg-emerald-50 text-emerald-700 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Live
@@ -145,12 +145,12 @@ export default function HeroSection() {
         <div className="container">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-xs text-white/40 uppercase tracking-wider">BilMoG 7J</span>
+              <span className="text-xs text-white/40 uppercase tracking-wider">Prognose 7J</span>
               <div className="text-2xl font-bold text-white">{bilmogDisplay.sevenYear}</div>
             </div>
             <div className="w-px h-10 bg-white/20" />
             <div>
-              <span className="text-xs text-white/40 uppercase tracking-wider">BilMoG 10J</span>
+              <span className="text-xs text-white/40 uppercase tracking-wider">Prognose 10J</span>
               <div className="text-2xl font-bold text-[#d4a853]">{bilmogDisplay.tenYear}</div>
             </div>
             <div className="w-px h-10 bg-white/20" />
