@@ -100,3 +100,9 @@
 ## Design-Redesign
 
 - [x] Hero-Redesign: Split-Layout (weiß/navy), dramatische Typografie, BilMoG-Live-Card, minimale Stats
+- [x] Services-Redesign: Linksausgerichteter Header, Top-Border-Karten mit Nummern-Wasserzeichen, minimale Sekundär-Liste
+- [x] About-Redesign: Dunkles Split-Layout mit diagonalem Clip-Path, große Statement-Typografie, Stats-Cards
+- [x] Testimonials-Redesign: Asymmetrisches Grid (7+5 Spalten), weißer Hintergrund, dekorative Anführungszeichen
+- [x] Team-Redesign: Minimalistisches Layout, Avatar-Platzhalter mit Initialen, klare Kontakt-Links
+- [x] Contact-Redesign: Split-Layout (Info links, Formular rechts), harte Ecken, Navy-Button mit Gold-Hover
+- [x] Footer-Redesign: Navy-Hintergrund, Gold-Akzente, klare Typografie, 12-Spalten-Grid
