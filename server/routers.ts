@@ -4,7 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { bilmogRouter } from "./bilmog";
 import { z } from "zod";
-import { createInquiry, getInquiries, getActiveJobPostings, getAllJobPostings, createJobPosting, getPublishedArticles, getArticleBySlug, getAllArticles, createArticle, updateArticle, deleteArticle } from "./db";
+import { createInquiry, getInquiries, getActiveJobPostings, getAllJobPostings, createJobPosting, getPublishedArticles, getArticleBySlug, getAllArticles, createArticle, updateArticle, deleteArticle, getRelatedArticles } from "./db";
 import { notifyOwner } from "./_core/notification";
 
 export const appRouter = router({
@@ -103,6 +103,16 @@ export const appRouter = router({
       .input(z.object({ slug: z.string() }))
       .query(async ({ input }) => {
         return getArticleBySlug(input.slug);
+      }),
+
+    getRelated: publicProcedure
+      .input(z.object({
+        slug: z.string(),
+        category: z.string(),
+        limit: z.number().min(1).max(6).default(3),
+      }))
+      .query(async ({ input }) => {
+        return getRelatedArticles(input.slug, input.category, input.limit);
       }),
 
     listAll: protectedProcedure.query(async () => {

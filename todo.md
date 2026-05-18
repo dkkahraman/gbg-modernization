@@ -90,3 +90,9 @@
 - [x] ShareButtons-Komponente: LinkedIn, X/Twitter, E-Mail Share-Links mit Icons + Link kopieren
 - [x] Integration in BlogArticle.tsx: Share-Buttons nach dem Artikel-Content
 - [x] Hover-Effekte und Tooltip für die Share-Buttons
+
+## Verwandte Artikel
+
+- [x] Backend: getRelatedArticles-Prozedur (gleiche Kategorie, aktueller Artikel ausgeschlossen)
+- [x] RelatedArticles-Komponente: 2-3 Karten mit Titel, Excerpt und Kategorie
+- [x] Integration in BlogArticle.tsx: Nach Share-Buttons, vor CTA

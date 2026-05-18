@@ -1,4 +1,4 @@
-import { eq, desc, and, like, or } from "drizzle-orm";
+import { eq, desc, and, like, or, ne } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, inquiries, InsertInquiry, jobPostings, InsertJobPosting, articles, InsertArticle } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -201,4 +201,35 @@ export async function deleteArticle(id: number) {
   if (!db) throw new Error("Database not available");
 
   await db.delete(articles).where(eq(articles.id, id));
+}
+
+export async function getRelatedArticles(currentSlug: string, category: string, limit = 3) {
+  const db = await getDb();
+  if (!db) return [];
+
+  // First try same category
+  const sameCategoryResults = await db.select().from(articles)
+    .where(and(
+      eq(articles.isPublished, true),
+      eq(articles.category, category as any),
+      ne(articles.slug, currentSlug)
+    ))
+    .orderBy(desc(articles.publishedAt))
+    .limit(limit);
+
+  // If not enough, fill with other published articles
+  if (sameCategoryResults.length < limit) {
+    const remaining = limit - sameCategoryResults.length;
+    const existingSlugs = [currentSlug, ...sameCategoryResults.map(a => a.slug)];
+    const otherResults = await db.select().from(articles)
+      .where(and(
+        eq(articles.isPublished, true),
+        ...existingSlugs.map(s => ne(articles.slug, s))
+      ))
+      .orderBy(desc(articles.publishedAt))
+      .limit(remaining);
+    return [...sameCategoryResults, ...otherResults];
+  }
+
+  return sameCategoryResults;
 }

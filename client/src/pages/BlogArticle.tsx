@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import ShareButtons from "@/components/ShareButtons";
+import RelatedArticles from "@/components/RelatedArticles";
 import { Link, useParams } from "wouter";
 import { Calendar, User, Tag, ArrowLeft, Clock } from "lucide-react";
 import { Streamdown } from "streamdown";
@@ -225,6 +226,9 @@ export default function BlogArticle() {
               description={article.excerpt}
             />
           </div>
+
+          {/* Related Articles */}
+          <RelatedArticles currentSlug={article.slug} category={article.category} />
 
           {/* CTA */}
           <div className="mt-8 p-6 rounded-xl bg-primary/5 border border-primary/10">
