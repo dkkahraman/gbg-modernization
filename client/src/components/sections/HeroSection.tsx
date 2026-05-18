@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Award, TrendingUp, Phone } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
+import { useBilmogRates } from "@/hooks/useBilmogRates";
 
 export default function HeroSection() {
   const { getParallaxStyle, getFadeStyle } = useParallax();
+  const { data: bilmogData } = trpc.bilmog.getRates.useQuery(undefined, {
+  staleTime: 60 * 60 * 1000,
+  retry: false,
+});
+
+const latestPublished = bilmogData?.data.filter((r) => !r.isPrognose).at(-1);
+const bilmogDisplay = latestPublished ?? { period: "GBG-Prognose 12.2026", sevenYear: "2,64 %", tenYear: "2,30 %" };
 
   return (
     <section className="relative min-h-[90vh] flex items-center pt-28 md:pt-32 overflow-hidden bg-primary">
@@ -11,7 +19,8 @@ export default function HeroSection() {
       <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full border border-accent/15 pointer-events-none" />
       <div className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full border border-accent/10 pointer-events-none" />
       {/* Subtle gold glow bottom-left */}
-      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-72
+       h-72 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
       {/* Grid pattern */}
       <div
         className="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] pointer-events-none"
@@ -91,7 +100,6 @@ export default function HeroSection() {
                 {[
                   { label: "DAV", Icon: Shield },
                   { label: "IVS", Icon: Award },
-                  { label: "aba", Icon: Shield },
                 ].map(({ label, Icon }) => (
                   <div key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/10 border border-white/15 hover:bg-white/15 transition-colors duration-300">
                     <Icon className="w-3.5 h-3.5 text-accent" />

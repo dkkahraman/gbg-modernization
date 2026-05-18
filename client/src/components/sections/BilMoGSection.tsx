@@ -1,6 +1,6 @@
 import { TrendingUp, Info, ExternalLink, ArrowUp, Minus } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { trpc } from "@/lib/trpc";
+import { useBilmogRates } from "@/hooks/useBilmogRates";
 
 type BilmogRow = {
   monat: string;
@@ -26,22 +26,14 @@ export default function BilMoGSection() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: tableRef, isVisible: tableVisible } = useScrollAnimation({ threshold: 0.2 });
 
-  const { data: liveData } = trpc.bilmog.getRates.useQuery(undefined, {
-    staleTime: 60 * 60 * 1000,
-    retry: false,
-  });
-
-  const bilmogData: BilmogRow[] = liveData?.data
-    ? liveData.data.map((row) => ({
-        monat: row.period,
-        siebenJaehrig: row.sevenYear,
-        zehnJaehrig: row.tenYear,
-        isPrognose: row.isPrognose,
-        trend: "up" as const,
-      }))
-    : FALLBACK_DATA;
-
-  const isLive = liveData?.source === "live";
+  const { data: liveEntries, isLive } = useBilmogRates();
+  const bilmogData: BilmogRow[] = liveEntries.map((row) => ({
+    monat: row.period,
+    siebenJaehrig: row.sevenYear,
+    zehnJaehrig: row.tenYear,
+    isPrognose: row.isPrognose,
+    trend: "up" as const,
+}));
 
   return (
     <section id="bilmog" className="py-20 md:py-28 bg-secondary/50">
@@ -170,8 +162,7 @@ export default function BilMoGSection() {
                   >
                     Deutschen Bundesbank
                   </a>
-                  {" "}(§ 253 Abs. 2 HGB). Der 7-jährige Durchschnittszins gilt für Pensionsrückstellungen;
-                  der 10-jährige Zins dient als ergänzende Kennzahl.
+                  {" "}(§ 253 Abs. 2 HGB).
                 </p>
               </div>
             </div>
