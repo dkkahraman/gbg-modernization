@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useScrollAnimation, useStaggeredAnimation } from "@/hooks/useScrollAnimation";
 
@@ -51,71 +50,73 @@ export default function FAQSection() {
   const { containerRef, getItemStyle } = useStaggeredAnimation(faqs.length, { threshold: 0.05 });
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-secondary/30">
+    <section id="faq" className="py-24 md:py-32 bg-[#f8f7f4] relative overflow-hidden">
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0a1628]/10 to-transparent" />
+
       <div className="container">
-        <div
-          ref={headerRef}
-          className="text-center mb-16"
-          style={{
-            opacity: headerVisible ? 1 : 0,
-            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease, transform 0.7s ease",
-          }}
-        >
-          <span className="text-sm font-medium text-accent uppercase tracking-wider">
-            Häufige Fragen
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mt-3">
-            Antworten auf Ihre Fragen
-          </h2>
-          <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">
-            Hier finden Sie Antworten auf die häufigsten Fragen rund um versicherungsmathematische Gutachten und betriebliche Altersversorgung.
-          </p>
-        </div>
+        <div className="grid md:grid-cols-12 gap-12 items-start">
+          {/* Left column — header */}
+          <div
+            ref={headerRef}
+            className="md:col-span-4"
+            style={{
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 0.7s ease, transform 0.7s ease",
+            }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-[2px] bg-[#d4a853]" />
+              <span className="text-sm font-medium tracking-wide text-[#0a1628]/50 uppercase">
+                Häufige Fragen
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#0a1628] leading-tight mb-6">
+              Antworten auf<br />
+              <span className="text-[#d4a853]">Ihre Fragen.</span>
+            </h2>
+            <p className="text-[#0a1628]/60 leading-relaxed mb-10">
+              Hier finden Sie Antworten auf die häufigsten Fragen rund um versicherungsmathematische
+              Gutachten und betriebliche Altersversorgung.
+            </p>
 
-        <div ref={containerRef} className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <div key={index} style={getItemStyle(index)}>
-                <AccordionItem
-                  value={`item-${index}`}
-                  className="bg-card border border-border/50 rounded-xl px-6 shadow-sm
-                    hover:shadow-md hover:border-primary/20
-                    transition-all duration-300 data-[state=open]:shadow-md data-[state=open]:border-primary/20"
-                >
-                  <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary transition-colors duration-300 py-5">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
-            ))}
-          </Accordion>
-        </div>
+            {/* CTA */}
+            <div className="border-t border-[#0a1628]/10 pt-8">
+              <p className="text-sm text-[#0a1628]/40 mb-4">
+                Ihre Frage war nicht dabei?
+              </p>
+              <a
+                href="#kontakt"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a1628] text-white text-sm font-medium hover:bg-[#0a1628]/90"
+              >
+                Kostenlose Erstberatung anfragen
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
 
-        {/* CTA nach FAQ */}
-        <div
-          className="text-center mt-12"
-          style={{
-            opacity: headerVisible ? 1 : 0,
-            transform: headerVisible ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s",
-          }}
-        >
-          <p className="text-muted-foreground mb-4">
-            Ihre Frage war nicht dabei?
-          </p>
-          <p className="text-sm text-muted-foreground mb-6">
-            Kontaktieren Sie uns für ein unverbindliches Erstgespräch – wir beraten Sie gerne persönlich.
-          </p>
-          <a href="#kontakt">
-            <Button variant="outline" className="gap-2 border-primary/20 hover:bg-primary/5 hover:border-primary/40 transition-all duration-300">
-              Kostenlose Erstberatung anfragen
-              <ArrowRight className="w-4 h-4" />
-            </Button>
-          </a>
+          {/* Right column — accordion */}
+          <div ref={containerRef} className="md:col-span-8">
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((faq, index) => (
+                <div key={index} style={getItemStyle(index)}>
+                  <AccordionItem
+                    value={`item-${index}`}
+                    className="bg-white border border-[#0a1628]/5 px-6
+                      data-[state=open]:border-[#d4a853]/30"
+                  >
+                    <AccordionTrigger className="text-left font-medium text-[#0a1628] hover:text-[#d4a853] py-5 text-sm">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[#0a1628]/60 leading-relaxed pb-5 text-sm">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </div>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>

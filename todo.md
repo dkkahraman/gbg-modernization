@@ -106,3 +106,9 @@
 - [x] Team-Redesign: Minimalistisches Layout, Avatar-Platzhalter mit Initialen, klare Kontakt-Links
 - [x] Contact-Redesign: Split-Layout (Info links, Formular rechts), harte Ecken, Navy-Button mit Gold-Hover
 - [x] Footer-Redesign: Navy-Hintergrund, Gold-Akzente, klare Typografie, 12-Spalten-Grid
+
+## Verbleibende Sektionen Redesign
+
+- [x] BilMoG-Sektion Redesign: Von zentriertem Layout zu linksausgerichtetem Header im neuen Stil
+- [x] FAQ-Sektion Redesign: Von zentriertem Layout zu asymmetrischem Design mit neuem Stil
+- [x] Fachartikel-Teaser-Sektion Redesign: Von rounded Cards zu neuem Design-System
