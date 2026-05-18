@@ -91,6 +91,7 @@ export default function HeroSection() {
                 {[
                   { label: "DAV", Icon: Shield },
                   { label: "IVS", Icon: Award },
+                  { label: "aba", Icon: Shield },
                 ].map(({ label, Icon }) => (
                   <div key={label} className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/10 border border-white/15 hover:bg-white/15 transition-colors duration-300">
                     <Icon className="w-3.5 h-3.5 text-accent" />

@@ -54,20 +54,18 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img
-              src="/GBG Logo KO_Finalversion.jpg"
-              alt="GBG Consulting für betriebliche Altersversorgung GmbH"
-              className="h-12 w-auto"
-              onError={(e) => {
-                const t = e.currentTarget;
-                t.style.display = "none";
-                t.nextElementSibling?.removeAttribute("style");
-              }}
-            />
-            <div className="flex flex-col" style={{ display: "none" }}>
-              <span className="text-2xl md:text-3xl font-bold tracking-tight text-primary font-serif">GBG</span>
-              <span className="text-[10px] md:text-xs text-muted-foreground leading-tight -mt-1">Consulting für bAV</span>
-            </div>
+            {isScrolled ? (
+              <img
+                src="/GBG Logo KO_Finalversion.jpg"
+                alt="GBG Consulting für betriebliche Altersversorgung GmbH"
+                className="h-12 w-auto"
+              />
+            ) : (
+              <div className="flex flex-col">
+                <span className="text-2xl md:text-3xl font-bold tracking-tight text-white font-serif">GBG</span>
+                <span className="text-[10px] md:text-xs text-white/70 leading-tight -mt-1">Consulting für bAV</span>
+              </div>
+            )}
           </Link>
 
           {/* Desktop Navigation */}
