@@ -1,4 +1,3 @@
-cat > client/src/hooks/useBilmogRates.ts << 'EOF'
 import { useState, useEffect } from "react";
 
 export type BilmogEntry = {
@@ -87,4 +86,3 @@ export function useBilmogRates() {
 
   return { data, isLive };
 }
-EOF

@@ -1,17 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Award, TrendingUp, Phone } from "lucide-react";
 import { useParallax } from "@/hooks/useParallax";
-import { useBilmogRates } from "@/hooks/useBilmogRates";
+import { useBilmogRates, BilmogEntry } from "@/hooks/useBilmogRates";
 
 export default function HeroSection() {
   const { getParallaxStyle, getFadeStyle } = useParallax();
-  const { data: bilmogData } = trpc.bilmog.getRates.useQuery(undefined, {
-  staleTime: 60 * 60 * 1000,
-  retry: false,
-});
+  const { data: bilmogData } = useBilmogRates();
 
-const latestPublished = bilmogData?.data.filter((r) => !r.isPrognose).at(-1);
-const bilmogDisplay = latestPublished ?? { period: "GBG-Prognose 12.2026", sevenYear: "2,64 %", tenYear: "2,30 %" };
+  const latestPublished = bilmogData.filter((r: BilmogEntry) => !r.isPrognose).at(-1);
+  const bilmogDisplay = latestPublished ?? { period: "GBG-Prognose 12.2026", sevenYear: "2,64 %", tenYear: "2,30 %" };
 
   return (
     <section className="relative min-h-[90vh] flex items-center pt-28 md:pt-32 overflow-hidden bg-primary">
