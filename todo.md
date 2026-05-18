@@ -96,3 +96,7 @@
 - [x] Backend: getRelatedArticles-Prozedur (gleiche Kategorie, aktueller Artikel ausgeschlossen)
 - [x] RelatedArticles-Komponente: 2-3 Karten mit Titel, Excerpt und Kategorie
 - [x] Integration in BlogArticle.tsx: Nach Share-Buttons, vor CTA
+
+## Design-Redesign
+
+- [x] Hero-Redesign: Split-Layout (weiß/navy), dramatische Typografie, BilMoG-Live-Card, minimale Stats
